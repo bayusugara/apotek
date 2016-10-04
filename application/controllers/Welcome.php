@@ -28,8 +28,9 @@ class Welcome extends CI_Controller {
 	}
 	public function index()
 	{
-		error_reporting(0);
-            ini_set('display_errors', 0);
-		$this->load->view('welcome_message');
+		$data['navbar']='navbar';
+		$data['content']='content';
+		$data['sidebar']='sidebar';
+		$this->load->view('tamplate',$data);
 	}
 }
