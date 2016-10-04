@@ -1,30 +1,69 @@
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Start Bootstrap</a>
+ <div class="top-header">
+            <div class="container">
+                <div class="top-header-left">
+                    <ul class="support">
+                        <li><a href="#"><label> </label></a></li>
+                        <li><a href="#">24x7 live<span class="live"> support</span></a></li>
+                    </ul>
+                    <ul class="support">
+                        <li class="van"><a href="#"><label> </label></a></li>
+                        <li><a href="#">Free shipping <span class="live">on order over 500</span></a></li>
+                    </ul>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="top-header-right">
+                 <div class="down-top">     
+                          <select class="in-drop">
+                              <option value="English" class="in-of">English</option>
+                              <option value="Japanese" class="in-of">Japanese</option>
+                              <option value="French" class="in-of">French</option>
+                              <option value="German" class="in-of">German</option>
+                            </select>
+                     </div>
+                    <div class="down-top top-down">
+                          <select class="in-drop">
+                          
+                          <option value="Dollar" class="in-of">Dollar</option>
+                          <option value="Yen" class="in-of">Yen</option>
+                          <option value="Euro" class="in-of">Euro</option>
+                            </select>
+                     </div>
+                     <!---->
+                    <div class="clearfix"> </div>   
+                </div>
+                <div class="clearfix"> </div>       
             </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">About</a>
-                    </li>
-                    <li>
-                        <a href="#">Services</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container -->
-    </nav>
+        <div class="bottom-header">
+            <div class="container">
+                <div class="header-bottom-left">
+                    <div class="logo">
+                        <a href="index.html"><img src="images/logo.png" alt=" " /></a>
+                    </div>
+                    <div class="search">
+                        <input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" >
+                        <input type="submit"  value="SEARCH">
+
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="header-bottom-right">                   
+                        <div class="account"><a href="login.html"><span> </span>YOUR ACCOUNT</a></div>
+                            <ul class="login">
+                            	<?php 
+                            	// print_r($userdata);
+                            	if(!isset($userdata)){?>
+	                                <li><a href="<?=base_url();?>login"><span> </span>LOGIN</a></li> |
+	                                <li ><a href="register.html">SIGNUP</a></li>
+                            	<?php
+                            	}else{
+	                                echo'<li><a href="'.base_url().'login/logout"><span> </span>LOGOUT</a></li>';
+                            	}
+                            	?>
+                            </ul>
+                        <div class="cart"><a href="#"><span> </span>CART</a></div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="clearfix"> </div>   
+            </div>
+        </div>

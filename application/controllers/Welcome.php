@@ -24,13 +24,18 @@ class Welcome extends CI_Controller {
 
 		// $this->load->database();
 		$this->load->database();
+		$this->load->model(array('login_model'));
 		// die();
 	}
 	public function index()
 	{
+		$user = $this->login_model->get();
+		$data['userdata'] = $user;
 		$data['navbar']='navbar';
 		$data['content']='content';
+		$data['slide']='slide';
 		$data['sidebar']='sidebar';
 		$this->load->view('tamplate',$data);
 	}
+	
 }
