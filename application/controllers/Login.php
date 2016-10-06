@@ -73,7 +73,7 @@ class Login extends CI_Controller {
 	}
 	function logout() {
 		$this->login_model->clear();
-		redirect(site_url());
+		redirect(base_url());
 	}
 	
 	function no_access(){

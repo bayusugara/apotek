@@ -28,4 +28,5 @@ class Login_model extends CI_Model {
 	function clear() {
 		$this->session->unset_userdata(USER_SESSION);
 	}
+	
 }

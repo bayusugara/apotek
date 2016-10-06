@@ -10,7 +10,9 @@
     <meta name="author" content="">
 
     <title>e-futsal Admin</title>
-
+    <script type="text/javascript">
+        var base_url = '<?php echo base_url(); ?>';
+    </script>
     <!-- Bootstrap Core CSS -->
     <link href="<?=base_url(); ?>assets/css/bootstrap.css" rel="stylesheet">
 
@@ -35,6 +37,10 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+
+
+
 
 </head>
 
@@ -80,8 +86,6 @@
 
     </div>
     <!-- /#wrapper -->
-
-    <!-- jQuery -->
     <script src="<?=base_url();?>assets/plugin/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -95,16 +99,49 @@
     <script src="<?=base_url();?>assets/plugin/datatables-plugins/dataTables.bootstrap.min.js"></script>
     <script src="<?=base_url();?>assets/plugin/datatables-responsive/dataTables.responsive.js"></script>
 
+    <!-- <script src="<?=base_url();?>assets/plugin/jquery-validation/dataTables.bootstrap.min.js"></script> -->
+    <script src="<?=base_url();?>assets/plugin/datatables-responsive/dataTables.responsive.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="<?=base_url();?>assets/js/sb-admin-2.min.js"></script>
 
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <?php  
+    for($i=0;$i<count($scripts);$i++):
+    ?>
+           <script type='text/javascript' src = '<?=base_url();?>assets/<?=$scripts[$i];?>'></script>
+ <?php endfor;?>
+    
+
     <script>
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
             responsive: true
         });
+        var base_url = '<?=base_url();?>';
+        console.log(base_url)
+        initValidatorStyle();
     });
+
+    function initValidatorStyle(){
+    $.validator.setDefaults({
+        highlight: function(element) {
+            $(element).closest('.form-group').addClass('has-error');
+        },
+        unhighlight: function(element) {
+            $(element).closest('.form-group').removeClass('has-error');
+        },
+        errorElement: 'span',
+        errorClass: 'help-block',
+        errorPlacement: function(error, element) {
+            if(element.parent('.input-group').length) {
+                error.insertAfter(element.parent());
+            }else if (element.hasClass('select2')) {     
+                error.insertAfter(element.next('span'));
+            }else {
+                error.insertAfter(element);
+            }
+        }
+    });
+}
     </script>
 
 </body>
