@@ -54,5 +54,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['admin/fasilitas/(:any)'] = 'admin/fasilitas/$1';
+$route['admin/provider/(:any)'] = 'admin/provider/$1';
+$route['admin/customer/(:any)'] = 'admin/customer/$1';
 $route['admin'] = 'admin/admin';
 

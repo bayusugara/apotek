@@ -109,8 +109,8 @@
     ?>
            <script type='text/javascript' src = '<?=base_url();?>assets/<?=$scripts[$i];?>'></script>
  <?php endfor;?>
-    
-
+    <!-- 
+    <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script> -->
     <script>
     $(document).ready(function() {
         $('#dataTables-example').DataTable({

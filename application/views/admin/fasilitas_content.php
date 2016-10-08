@@ -1,6 +1,6 @@
 <div class="panel panel-default">
     <div class="panel-heading" style="overflow: hidden">
-        List Data Fasilitas
+        List Data <?php echo $title; ?>
         <a data-target="#modal-admin" data-backdrop="static" data-toggle="modal" style="padding: 4px" class="btn btn-sm btn-primary text-black pull-right"><i class="fa fa-plus-square-o fa-lg"></i></a>  
     </div>
     
