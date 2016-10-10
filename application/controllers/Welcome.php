@@ -24,7 +24,7 @@ class Welcome extends CI_Controller {
 
 		// $this->load->database();
 		$this->load->database();
-		$this->load->model(array('login_model'));
+		$this->load->model(array('login_model','provider_model'));
 		// die();
 	}
 	public function index()
@@ -35,6 +35,7 @@ class Welcome extends CI_Controller {
 		$data['content']='content';
 		$data['slide']='slide';
 		$data['sidebar']='sidebar';
+		$data['provider'] = $this->provider_model->get()->result_array();
 		$this->load->view('tamplate',$data);
 	}
 	
