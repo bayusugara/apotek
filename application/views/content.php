@@ -38,7 +38,13 @@
                         <a href="single.html"><img class="img-responsive chain" src="images/ch.jpg" alt=" " /></a>
                         <span class="star"> </span>
                         <div class="grid-chain-bottom">
-                            <h6><a href="single.html">Lorem ipsum dolor</a></h6>
+                        <?php foreach ($provider as $value)
+                            { 
+                        ?>
+                            <h6><a href="single.html"> <?=$value['nama'];?></a></h6>
+                        <?php
+                            }
+                        ?>
                             <div class="star-price">
                                 <div class="dolor-grid"> 
                                     <span class="actual">300$</span>
