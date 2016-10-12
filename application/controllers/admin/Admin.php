@@ -37,18 +37,23 @@ class Admin extends CI_Controller {
 		$data['content']='admin/dashboard';
 		$data['sidebar']='admin/sidebar_admin';
 		$data['title']="Dashboard";
+		$data['scripts']="asd";
 		$this->load->view('admin/tamplate_admin',$data);
 	}
 	function check_role(){
 		$user = $this->login_model->get();
 		if(isset($user)){
-			if($user['role'] != 1){
+			if($user['role'] == 1){
 			// $this->session->set_flashdata('form_msg', array('success' =>true, 'fail'=> false, 'msg' => 'Login Success'));
+				// redirect('welcome');
+			
+			}else if($user['role'] == 2){
+					redirect('admin_provider');
+			}else{
 				redirect('welcome');
 			}
 		}else{
 			redirect('login');
-		}	
-	}
-	
+		}
+	}	
 }

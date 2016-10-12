@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Provider extends CI_Controller {
+class Home extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -32,37 +32,55 @@ class Provider extends CI_Controller {
 		$this->check_role();
 
 		//init layout
-		$data['navbar']='admin/navbar_admin';
-		$data['content']='admin/provider_content';
+		$data['navbar']='admin_provider/navbar_provider';
+		$data['content']='admin_provider/dashboard';
 		$data['slide']=null;
-		$data['sidebar']='admin/sidebar_admin';
-		$data['title']='Penyedia Lapang';
-
-		//init data
-		$data['provider'] = $this->provider_model->get()->result_array();
-		$data['fasilitas'] = $this->fasilitas_model->get()->result_array();
-        $data['provinsi'] = $this->provider_model->get_provinsi()->result_array();
-
-		$data['scripts'] = ['js/admin/provider.js','plugin/form-validation/jquery.validate.min.js','plugin/form-validation/extjquery.validate.min.js','plugin/bootbox/bootbox.js'];
-		$this->load->view('admin/tamplate_admin',$data);
+		$data['sidebar']='admin_provider/sidebar_provider';
+		$data['title']='Dashboard';
+		$data['provider'] = $this->provider_model->get(array('user_login_id'=>$user['id']))->row_array();
+		$data['scripts'] = ['js/provider/general.js','plugin/form-validation/jquery.validate.min.js','plugin/form-validation/extjquery.validate.min.js','plugin/bootbox/bootbox.js'];
+		$this->load->view('admin_provider/tamplate_provider',$data);
 	}
-
-	function check_role(){
+    public function gallery(){
         $user = $this->login_model->get();
-        if(isset($user)){
-            if($user['role'] == 1){
+        $data['userdata'] = $user;
+        $data['provider'] = $this->provider_model->get(array('user_login_id'=>$user['id']))->row_array();
+        $data['navbar']='admin_provider/navbar_provider';
+        $data['content']='admin_provider/content_gallery';
+        $data['slide']=null;
+        $data['sidebar']='admin_provider/sidebar_provider';
+        $data['title']='Galeri Foto';
+        $data['scripts'] = ['js/provider/general.js','js/provider/gallery.js','plugin/form-validation/jquery.validate.min.js','plugin/form-validation/extjquery.validate.min.js','plugin/bootbox/bootbox.js'];
+        $this->load->view('admin_provider/tamplate_provider',$data);
+    }
+    public function lapang(){
+        $user = $this->login_model->get();
+        $data['userdata'] = $user;
+        $data['provider'] = $this->provider_model->get(array('user_login_id'=>$user['id']))->row_array();
+        $data['navbar']='admin_provider/navbar_provider';
+        $data['content']='admin_provider/content_lapang';
+        $data['slide']=null;
+        $data['sidebar']='admin_provider/sidebar_provider';
+        $data['title']='Lapangan';
+        $data['scripts'] = ['js/provider/general.js','js/provider/lapang.js','plugin/form-validation/jquery.validate.min.js','plugin/form-validation/extjquery.validate.min.js','plugin/bootbox/bootbox.js'];
+        $this->load->view('admin_provider/tamplate_provider',$data);
+    }
+	function check_role(){
+		$user = $this->login_model->get();
+		if(isset($user)){
+            if($user['role'] == 2){
             // $this->session->set_flashdata('form_msg', array('success' =>true, 'fail'=> false, 'msg' => 'Login Success'));
                 // redirect('welcome');
             
-            }else if($user['role'] == 2){
-                    redirect('admin_provider');
+            }else if($user['role'] == 1){
+                    redirect('admin');
             }else{
                 redirect('welcome');
             }
         }else{
             redirect('login');
         }
-    }   
+	}
     function delete_img(){
         $id = $_POST['id'];
         $foto = 'assets/img/'.$_POST['id_provider'].'/'.$_POST['foto'];
@@ -76,15 +94,6 @@ class Provider extends CI_Controller {
                 }
             }
         
-    }
-    function set_default(){
-        $id=$_POST['id'];
-        $id_provider = $_POST['id_provider'];
-        $data['is_display_picture'] = 0;
-        $this->gallery_model->edit_img(array('id_provider' => $id_provider,'is_display_picture'=> 1),$data);
-        $data['is_display_picture'] = 1;
-        $this->gallery_model->edit_img(array('id' => $id),$data);
-        echo "1";
     }
     function upload_image_gallery(){
         $id=$_POST['id'];
@@ -103,10 +112,10 @@ class Provider extends CI_Controller {
             echo "0";
         }
     }
-	function check_password_admin(){
-        $pass = md5($_POST['password_admin']);
+	function check_password(){
+        $pass = md5($_POST['old_password']);
         $id = $_POST['id'];
-        $data = $this->provider_model->is_password_admin($pass, $id);
+        $data = $this->provider_model->is_password($pass, $id);
         if($data){
             $result = true;
         }else{

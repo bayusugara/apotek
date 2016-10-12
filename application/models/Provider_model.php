@@ -70,6 +70,14 @@ class Provider_model extends CI_Model {
         $result = $this->db->get('user_login')->row_array();
         return $result;
     }
+    function is_password($pass, $id){
+        $this->db->where(array('password = '=> $pass,'id = '=> $id));
+        // if($id > 0){
+        //     $this->db->where(array('id = '=> $id,'role = '=> 1));
+        // }
+        $result = $this->db->get('user_login')->row_array();
+        return $result;
+    }
 	function update($id, $data) {
         // if($data['password'] != NULL){
         //  $data['password'] = $this->get_hash($data['username'], $data['password']);
@@ -102,6 +110,7 @@ class Provider_model extends CI_Model {
 		$this->db->update('provider', $data);
 		return $id_provider;
 	}
+	
 	
 	function delete($id_provider){
 		$this->db->where('id', $id_provider);

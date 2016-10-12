@@ -57,4 +57,7 @@ $route['admin/fasilitas/(:any)'] = 'admin/fasilitas/$1';
 $route['admin/provider/(:any)'] = 'admin/provider/$1';
 $route['admin/customer/(:any)'] = 'admin/customer/$1';
 $route['admin'] = 'admin/admin';
+$route['admin_provider'] = 'admin_provider/home';
+$route['admin_provider/gallery'] = 'admin_provider/home/gallery';
+$route['admin_provider/lapang'] = 'admin_provider/home/lapang';
 

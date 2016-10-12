@@ -47,13 +47,15 @@ class Login extends CI_Controller {
 		}
 		// }
 		if(!$login_success){
-			// $this->session->set_flashdata('form_msg', array('success'=>false,'fail' =>true, 'msg' => 'Access denied. Incorrect username/password'));
+			// $this->session->set_flashdata('form_msg', a2ray('success'=>false,'fail' =>true, 'msg' => 'Access denied. Incorrect username/password'));
 			redirect('login');
 		}else{
 			$user = $this->login_model->get();
 			if($user['role'] == 1){
 			// $this->session->set_flashdata('form_msg', array('success' =>true, 'fail'=> false, 'msg' => 'Login Success'));
 				redirect('admin');
+			}else if($user['role'] == 2){
+				redirect('admin_provider');
 			}else{
 				redirect('welcome');
 			}

@@ -217,7 +217,7 @@ function delete_img(id,foto,id_provider){
 			$.post( base_url+"admin/provider/delete_img", {id : id,foto : foto,id_provider : id_provider}).done(function( data ) {
 				if (data == '1'){
 					bootbox.alert("Data berhasil dihapus.", function(){
-						location.reload();
+						get_gallery(id_provider);
 					})
 				} else {
 					bootbox.alert('Data gagal dihapus.');
@@ -254,7 +254,7 @@ function upload_image(){
             processData: false,
            success:function(data)
           {
-            if (data != "1"){
+            if (data != "0"){
 				bootbox.alert("Data berhasil disimpan.", function(){
 				get_gallery(data);
 				})

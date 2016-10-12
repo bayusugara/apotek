@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 08, 2016 at 07:54 PM
+-- Generation Time: Oct 12, 2016 at 04:41 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.5.28
 
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `lapang` (
   `ukuran` varchar(20) NOT NULL,
   `id_provider` int(10) unsigned NOT NULL,
   `jenis` smallint(2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `lapang`
@@ -92,7 +92,11 @@ CREATE TABLE IF NOT EXISTS `lapang` (
 INSERT INTO `lapang` (`id_lapang`, `kode_lapang`, `harga`, `ukuran`, `id_provider`, `jenis`) VALUES
 (4, 'A', 60000, '25 X 14', 8, 2),
 (5, 'B', 50000, '25 X 14', 8, 3),
-(7, 'C', 150000, '25 X 14', 8, 1);
+(7, 'C', 150000, '25 X 14', 8, 1),
+(8, 'D', 120000, '25 X 14', 8, 0),
+(9, 'A', 50000, '25 X 15', 1, 0),
+(10, 'B', 70000, '25 X 14', 1, 2),
+(11, 'C', 70000, '25 X 14', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -130,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `provider_fasilitas` (
   `id` int(11) NOT NULL,
   `id_provider` int(10) unsigned NOT NULL,
   `id_fasilitas` int(10) unsigned NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `provider_fasilitas`
@@ -140,7 +144,10 @@ INSERT INTO `provider_fasilitas` (`id`, `id_provider`, `id_fasilitas`) VALUES
 (1, 8, 123),
 (2, 8, 124),
 (3, 8, 126),
-(8, 10, 127);
+(8, 10, 127),
+(9, 1, 123),
+(10, 1, 124),
+(11, 1, 126);
 
 -- --------------------------------------------------------
 
@@ -151,17 +158,23 @@ INSERT INTO `provider_fasilitas` (`id`, `id_provider`, `id_fasilitas`) VALUES
 CREATE TABLE IF NOT EXISTS `provider_gallery` (
   `id` int(10) unsigned NOT NULL,
   `foto` varchar(100) NOT NULL,
-  `id_provider` int(10) unsigned NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+  `id_provider` int(10) unsigned NOT NULL,
+  `is_display_picture` tinyint(4) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `provider_gallery`
 --
 
-INSERT INTO `provider_gallery` (`id`, `foto`, `id_provider`) VALUES
-(4, 'add-icon.png', 8),
-(5, 'book.png', 8),
-(7, 'close_blue.png', 8);
+INSERT INTO `provider_gallery` (`id`, `foto`, `id_provider`, `is_display_picture`) VALUES
+(4, 'add-icon.png', 8, 0),
+(5, 'book.png', 8, 0),
+(7, 'close_blue.png', 8, 0),
+(8, 'add-icon.png', 1, 0),
+(12, 'file_add.png', 10, 0),
+(16, '067861-3d-glossy-blue-orb-icon-alphanumeric-crossing.png', 1, 1),
+(17, 'book.png', 1, 0),
+(19, 'file_add.png', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -252,7 +265,7 @@ CREATE TABLE IF NOT EXISTS `user_login` (
 
 INSERT INTO `user_login` (`id`, `username`, `email`, `password`, `role`) VALUES
 (1, 'krisna', 'kfebrianto96@gmail.com', 'ae2b1fca515949e5d54fb22b8ed95575', 1),
-(2, 'febraintop', 'kfebrianto98@gmail.com', '938b4263f09b8b1dae8f027d06681ec9', 2),
+(2, 'febraintop', 'kfebrianto98@gmail.com', 'ae2b1fca515949e5d54fb22b8ed95575', 2),
 (11, 'testing2', 'kfebrianto2016@gmail.com', '938b4263f09b8b1dae8f027d06681ec9', 2),
 (12, 'testing2', 'kfebrianto2@gmail.com', 'ae2b1fca515949e5d54fb22b8ed95575', 3),
 (15, 'testing', 'admin@gie-art.com', '5f4dcc3b5aa765d61d8327deb882cf99', 3),
@@ -345,7 +358,7 @@ ALTER TABLE `fasilitas`
 -- AUTO_INCREMENT for table `lapang`
 --
 ALTER TABLE `lapang`
-  MODIFY `id_lapang` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id_lapang` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `provider`
 --
@@ -355,12 +368,12 @@ ALTER TABLE `provider`
 -- AUTO_INCREMENT for table `provider_fasilitas`
 --
 ALTER TABLE `provider_fasilitas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `provider_gallery`
 --
 ALTER TABLE `provider_gallery`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `provinsi`
 --

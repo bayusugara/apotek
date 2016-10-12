@@ -47,11 +47,19 @@ class Fasilitas extends CI_Controller {
 	function check_role(){
 		$user = $this->login_model->get();
 		if(isset($user)){
-			if($user['role'] != 1){
+			if($user['role'] == 1){
+			// $this->session->set_flashdata('form_msg', array('success' =>true, 'fail'=> false, 'msg' => 'Login Success'));
+				// redirect('welcome');
+			
+			}else if($user['role'] == 2){
+					redirect('admin_provider');
+			}else{
 				redirect('welcome');
 			}
-		}	
-	}
+		}else{
+			redirect('login');
+		}
+	}	
 	public function post(){
         $data['nama_fasilitas'] = $_POST['nama_fasilitas'];
         $data['deskripsi'] = $_POST['deskripsi'];

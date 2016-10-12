@@ -18,6 +18,10 @@ class Gallery_model extends CI_Model {
 		$this->db->where('id', $id);
 		return $this->db->delete('provider_gallery');
 	}
+	function edit_img($where, $data){
+		$this->db->where($where);
+		return $this->db->update('provider_gallery', $data);
+	}
 	function add_img_gallery($data){
 		$query = $this->db->insert('provider_gallery', $data);
 		// $this->db->insert();
