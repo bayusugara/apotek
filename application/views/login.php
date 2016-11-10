@@ -1,6 +1,6 @@
 <div class=" login-right">
 			  	<h3>REGISTERED CUSTOMERS</h3>
-				<p>If you have an account with us, please log in.</p>
+				<p>jika sudah memiliki Account silahkan login</p>
 				<form method="POST" action="<?=base_url();?>login/check">
 				  <div>
 					<span>Email Address<label>*</label></span>
@@ -16,6 +16,6 @@
 			   </div>	
 			    <div class=" login-left">
 			  	 <h3>NEW CUSTOMERS</h3>
-				 <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
+				 <p>Silahkan buat Account terlebih dahulu...</p>
 				 <a class="acount-btn" href="register.html">Create an Account</a>
 			   </div>

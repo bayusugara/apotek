@@ -1,14 +1,13 @@
-    
-   <div class="wmuSliderWrapper">         
+    <div class="wmuSliderWrapper">         
        <article style="position: absolute; width: 100%; opacity: 0;">                   
         <div class="banner-matter">
         <div class="col-md-5 banner-bag">
-            <img class="img-responsive " src="<?=base_url();?>assets/images/bag.jpg" alt=" " />
+            <img class="img-responsive " src="<?=base_url();?>assets/images/" alt=" " />
             </div>
             <div class="col-md-7 banner-off">                           
                 <h2>FLAT 50% 0FF</h2>
-                <label>FOR ALL PURCHASE <b>VALUE</b></label>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et </p>                 
+                <label> <b></b></label>
+                <p> </p>                 
                 <span class="on-get">GET NOW</span>
             </div>
             
@@ -19,12 +18,12 @@
         <article style="position: absolute; width: 100%; opacity: 0;">                  
         <div class="banner-matter">
         <div class="col-md-5 banner-bag">
-            <img class="img-responsive " src="<?=base_url();?>assets/images/bag1.jpg" alt=" " />
+            <img class="img-responsive " src="<?=base_url();?>assets/images/.jpg" alt=" " />
             </div>
             <div class="col-md-7 banner-off">                           
                 <h2>FLAT 50% 0FF</h2>
-                <label>FOR ALL PURCHASE <b>VALUE</b></label>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et </p>                 
+                <label> <b></b></label>
+                <p> </p>                 
                 <span class="on-get">GET NOW</span>
             </div>
             
@@ -35,12 +34,12 @@
         <article style="position: absolute; width: 100%; opacity: 0;">                  
         <div class="banner-matter">
         <div class="col-md-5 banner-bag">
-            <img class="img-responsive " src="<?=base_url();?>assets/images/bag.jpg" alt=" " />
+            <img class="img-responsive " src="<?=base_url();?>assets/images/.jpg" alt=" " />
             </div>
             <div class="col-md-7 banner-off">                           
                 <h2>FLAT 50% 0FF</h2>
-                <label>FOR ALL PURCHASE <b>VALUE</b></label>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et </p>                 
+                <label> <b></b></label>
+                <p> </p>                 
                 <span class="on-get">GET NOW</span>
             </div>
             

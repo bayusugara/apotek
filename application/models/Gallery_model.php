@@ -14,6 +14,13 @@ class Gallery_model extends CI_Model {
 		$this->db->order_by('id','ASC');
 		return $this->db->get();
 	}
+	function getdp($where = NULL){
+		$this->db->select('*');
+		$this->db->from('provider_gallery');
+		$this->db->where('is_display_picture = 1');
+		$this->db->order_by('id','ASC');
+		return $this->db->get();
+	}
 	function delete_img($id){
 		$this->db->where('id', $id);
 		return $this->db->delete('provider_gallery');
@@ -25,6 +32,6 @@ class Gallery_model extends CI_Model {
 	function add_img_gallery($data){
 		$query = $this->db->insert('provider_gallery', $data);
 		// $this->db->insert();
-		return $this->db->insert_id();
+		return $this->db->insert_id(); 
 	}
 }
