@@ -48,6 +48,7 @@ class Login extends CI_Controller {
 		// }
 		if(!$login_success){
 			// $this->session->set_flashdata('form_msg', a2ray('success'=>false,'fail' =>true, 'msg' => 'Access denied. Incorrect username/password'));
+			$this->session->set_flashdata('info','maaf username atau password salah');
 			redirect('login');
 		}else{
 			$user = $this->login_model->get();

@@ -81,7 +81,7 @@ class Customer extends CI_Controller {
 		        $data['alamat'] = $_POST['alamat'];
 		        $data['no_tlp'] = $_POST['no_telp'];
 		        $data['status'] = $_POST['status'];
-		        $data['foto'] = $filename.'.png';
+		        $data['foto'] = $fileName.'.png';
         		$data['user_login_id'] = $user_id;
             	$this->customer_model->add($data);
                 echo "1";

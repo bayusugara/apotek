@@ -35,14 +35,23 @@
                     </div>
                     <div class="clearfix"> </div>
                 </div>
-                <div class="header-bottom-right">                   
-                        <div class="account"><a href="login.html"><span> </span>YOUR ACCOUNT</a></div>
+                <div class="header-bottom-right">
+                        <?php 
+                            // print_r($userdata);
+                            if(!isset($userdata)){
+                        ?>                   
+                            <div class="account"><a href="login.html"><span> </span>YOUR ACCOUNT</a></div>
+                        <?php
+                            }else{
+                            echo'<div class="account"><a href="'.base_url().'welcome/profil_customer/'.$userdata['id'].'"><span> </span>YOUR ACCOUNT ('.$userdata['username'].') </a></div>';
+                            }
+                        ?>
                             <ul class="login">
                             	<?php 
                             	// print_r($userdata);
                             	if(!isset($userdata)){?>
 	                                <li><a href="<?=base_url();?>login"><span> </span>LOGIN</a></li> |
-	                                <li ><a href="register.html">SIGNUP</a></li>
+	                                <li ><a href="<?=base_url();?>login">SIGNUP</a></li>
                             	<?php
                             	}else{
 	                                echo'<li><a href="'.base_url().'login/logout"><span> </span>LOGOUT</a></li>';
