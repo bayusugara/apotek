@@ -33,14 +33,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <div class="container">
             <div class="shoes-grid">
             <a href="single.html">
-            <div class="wrap-in">
-               <div class="wmuSlider example1 slide-grid">   
+            <div class="wrap-in"> 
                 <?php
                     if($slide!=null){
                         $this->load->view($slide);
                     }
                ?>
-               </div>
               </div>
                 </a>
                   <!---->
