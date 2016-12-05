@@ -24,7 +24,7 @@ class Welcome extends CI_Controller {
 
 		// $this->load->database();
 		$this->load->database();
-		$this->load->model(array('login_model','provider_model','gallery_model'));
+		$this->load->model(array('login_model','provider_model','gallery_model','transaksi_model'));
 		// die();
 	}
 	public function index()
@@ -56,6 +56,15 @@ class Welcome extends CI_Controller {
 
 		$img = $this->gallery_model->get(array('id_provider' => $id,'is_display_picture' => '1'))->row_array();
 		print_r($img);
+	}
+	function get_jadwal_lapangan(){
+		$id = $this->input->post('idx');
+		$tgl_sewa = $this->input->post('tgl_sewa');
+		if($tgl_sewa == 0){
+			$jadwal = $this->transaksi_model->get(array('id_lapang'=>$id,'tgl_sewa'=>date('Y-m-d')))->result_array();
+		}
+		// print_r($id);
+		echo json_encode($jadwal);
 	}
 	PUBLIC function view_all(){
 		$user = $this->login_model->get();

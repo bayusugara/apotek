@@ -1,7 +1,10 @@
 <head>
 	<link rel="stylesheet" href="<?=base_url();?>assets/css/etalage.css" type="text/css" media="all" />
 	<script src="<?=base_url();?>assets/js/jquery.etalage.min.js"></script>
+	<script src="<?=base_url();?>assets/js/front-control.js"></script>
+	<script src="<?=base_url();?>assets/js/bootstrap.min.js"></script>
 	<script>
+			var base_url = '<?=base_url();?>';
 			jQuery(document).ready(function($){
 
 				$('#etalage').etalage({
@@ -66,14 +69,28 @@
 								<th>Ukuran</th>
 								<th>Jenis</th>
 								<th>Harga</th>
+								<th></th>
 							</tr>
 						</thead>
 						<?php foreach ($lapang as $key => $value) {  ?>			
 							<tr>
-								<th class="success"><?php echo $value['kode_lapang']; ?></th>
-								<th><?php echo $value['ukuran']; ?> m</th>
-								<th class="success"><?php echo $value['jenis']; ?></th>
-								<th>Rp. <?php echo $value['harga']; ?></th>
+								<td><?php echo $value['kode_lapang']; ?></td>
+								<td><?php echo $value['ukuran']; ?> m</td>
+								<td><?php 
+									if($value['jenis'] == 0){
+										echo "Lantai Vinyl";
+									}elseif($value['jenis'] == 1){
+										echo "Rumput Sintetis";
+									}elseif($value['jenis'] == 2){
+										echo"Lantai polypropylene";
+									}elseif($value['jenis'] == 3){
+										echo"Lantai Beton";
+									}
+								?></td>
+								<td>Rp. <?php echo $value['harga']; ?></td>
+								<td><button class="btn btn-success" data-jam-buka="<?=$provider['jam_buka'];?>" data-jam-tutup="<?=$provider['jam_tutup'];?>" data-id="<?=$value['id_lapang'];?>" onclick="openCalendar(this);" data-toggle="modal" data-target="#myModalCalendar">
+								Lihat Jadwal</button>
+								</td>
 							</tr>
 						<?php } ?>
 					</table>
@@ -104,5 +121,22 @@
 			});
 		</script>
 	</div>
+	<!-- Modal -->
+<div class="modal fade" id="myModalCalendar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Jadwal Lapangan</h4>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>	
 					 	
