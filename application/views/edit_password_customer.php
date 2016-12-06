@@ -34,8 +34,6 @@
 			</div>	
 		   </div>
 
-
-
 <script type="text/javascript">
 var password = document.getElementById("password")
   , confirm_password = document.getElementById("confirm_password");

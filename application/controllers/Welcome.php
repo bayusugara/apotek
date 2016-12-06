@@ -80,8 +80,17 @@ class Welcome extends CI_Controller {
 		$data['sidebar']='sidebar';
 		$this->load->view('tamplate',$data);
 	}
-	public function post(){
-		
+	public function registrasi_provider(){
+		$user = $this->login_model->get();
+		$data['userdata'] = $user;
+		$data['navbar']='navbar';
+		$data['content']='registrasi_provider';
+		$data['slide']=null;
+		$data['sidebar']='sidebar';
+		$data['provinsi'] = $this->provider_model->get_provinsi()->result_array();
+		$this->load->view('tamplate',$data);
+	}
+	public function post(){		
         $data['id_customer'] = $_POST['id_customer'];
         if($_POST['id_customer'] == 0){
         	$data_user['username'] = $_POST['username'];
@@ -135,6 +144,21 @@ class Welcome extends CI_Controller {
             }
         }
         $this->check();
+    }
+    public function post_provider(){
+    	$data['id_provider'] = $_POST['id_provider'];
+        $data_provider['password'] = md5($_POST['password']);
+        $data_provider['username'] = $_POST['username'];
+        $data_provider['email'] = $_POST['email'];
+        $data_provider['role'] = 2;
+        $user_id = $this->user_model->add_user_login($data_provider);
+        $data['lokasi'] = $_POST['lokasi'];
+        $data['nama'] = $_POST['nama'];
+        $data['provinsi_id'] = $_POST['provinsi'];;
+        $data['status'] = 1;
+        $data['user_login_id'] = $user_id;
+        $this->provider_model->add($data);
+        redirect('admin_provider');
     }
     public function check(){
 		$this->layout = false;
@@ -202,18 +226,14 @@ class Welcome extends CI_Controller {
         if($data){
             $result = true;
             $data['password'] = md5($_POST['password']);
-	 		$id = $_POST['id'];
-	    	if($this->customer_model->change_pass(array('id'=>$id),$data)){
+	    	$this->customer_model->change_pass(array('id'=>$id),$data);
 	        	echo "1";
-	    	}else{
-	        	echo "0";
-	    	}
+	        	redirect('welcome/profil_customer');
         }else{
             $result = false;
             $this->session->set_flashdata('info','maaf password lama anda salah');
 			redirect('welcome/edit_password_customer');
         }
-
         echo json_encode($result);
     }
     function change_pass(){
@@ -225,6 +245,17 @@ class Welcome extends CI_Controller {
 	        echo "0";
 	    }
 
+    }
+    function get_fasilitas_by_id(){
+        // $this->layout = false;
+        $id = $_POST['idx'];
+        $query = $this->provider_model->get_provider_fasilitas(array("id_provider"=>$id))->result_array();
+        $result = "";
+        foreach($query as $row){
+            // $result = $row['TrcTypeID']+
+        }
+        // print_r($query);
+        echo json_encode($query);
     }
 	
 }
