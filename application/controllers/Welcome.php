@@ -37,6 +37,7 @@ class Welcome extends CI_Controller {
 		$data['sidebar']='sidebar';
 		$data['provider'] = $this->provider_model->get()->result_array();
 		$data['lapang'] = $this->provider_model->get()->result_array();
+
 		$this->load->view('tamplate',$data);
 	}
 	PUBLIC function detail_provider($id_provider){
@@ -195,7 +196,7 @@ class Welcome extends CI_Controller {
 		$this->load->view('tamplate',$data);
 	}
 	function check_password(){
-        $pass = md5($_POST['old_password']);
+        $pass = md5($_POST['password_old']);
         $id = $_POST['id'];
         $data = $this->customer_model->check_password($pass, $id);
         if($data){
@@ -204,14 +205,16 @@ class Welcome extends CI_Controller {
 	 		$id = $_POST['id'];
 	    	if($this->customer_model->change_pass(array('id'=>$id),$data)){
 	        	echo "1";
-	        	redirect('welcome/profil_customer');
 	    	}else{
 	        	echo "0";
 	    	}
         }else{
             $result = false;
+            $this->session->set_flashdata('info','maaf password lama anda salah');
+			redirect('welcome/edit_password_customer');
         }
 
+        echo json_encode($result);
     }
     function change_pass(){
    	 	$data['password'] = md5($_POST['password']);
