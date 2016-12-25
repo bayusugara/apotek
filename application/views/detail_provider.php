@@ -128,9 +128,51 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Jadwal Lapangan</h4>
+        <?php
+        if($userdata['id'] != null){
+        ?>
+        <br>
+        <center><button class="btn btn-lg btn-primary"  data-toggle="modal" data-target="#myModalBooking">Booking Here !</button></center>
+    	<?php }?>
       </div>
       <div class="modal-body">
         
+			
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="myModalBooking" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Booking</h4>
+      </div>
+      <div class="modal-body">
+      	<div class="row">
+	        <div class="form-group required">
+	          <label class="col-sm-3 control-label">Tanggal Booking</label>
+	          <div class="col-sm-8">
+	          	<input type="date" class="form-control" required name="tanggal">
+	          </div>
+	        </div>
+	        <div class="form-group required">
+	          <label class="col-sm-3 control-label">Jam Booking</label>
+	          <div class="col-sm-4">
+	            <!-- <textarea name="alamat" class="form-control"></textarea> -->
+	            <input class="form-control" type="time" name="jam_mulai">
+	          </div>
+	          <div class="col-sm-4">
+	            <!-- <textarea name="alamat" class="form-control"></textarea> -->
+	            <input class="form-control" type="time" name="jam_tutup">
+	          </div>
+	        </div>
+		</div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

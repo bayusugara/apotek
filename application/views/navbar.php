@@ -3,7 +3,7 @@
                 <div class="top-header-left">
                     <ul class="support">
                         <li><a href="#"><label> </label></a></li>
-                        <li><a href="#">E-<span class="live">FUTSAL</span></a></li>
+                        <li><a href="<?=base_url();?>">E-<span class="live">FUTSAL</span></a></li>
                     </ul>
                     <ul class="support">
                         <li class="van"><a href="#"><label> </label></a></li>

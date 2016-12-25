@@ -35,6 +35,7 @@ class Welcome extends CI_Controller {
 		$data['content']='content';
 		$data['slide']='slide';
 		$data['sidebar']='sidebar';
+		$data['provinsi'] = $this->provider_model->get_provinsi()->result_array();
 		$data['provider'] = $this->provider_model->get()->result_array();
 		$data['lapang'] = $this->provider_model->get()->result_array();
 		$this->load->view('tamplate',$data);
@@ -46,6 +47,8 @@ class Welcome extends CI_Controller {
 		$data['content']='detail_provider';
 		$data['slide']= null;
 		$data['sidebar']='sidebar';
+		$data['provinsi'] = $this->provider_model->get_provinsi()->result_array();
+
         $data['provider'] = $this->provider_model->get(array('id_provider' => $id_provider))->row_array();
         $data['lapang'] = $this->provider_model->get_lapang(array('id_provider' =>$data['provider']['id_provider']))->result_array();
         $data['fasilitas'] = $this->provider_model->get_provider_fasilitas(array('id_provider' =>$data['provider']['id_provider']))->result_array();
@@ -61,9 +64,23 @@ class Welcome extends CI_Controller {
 		$id = $this->input->post('idx');
 		$tgl_sewa = $this->input->post('tgl_sewa');
 		if($tgl_sewa == 0){
-			$jadwal = $this->transaksi_model->get(array('id_lapang'=>$id,'tgl_sewa'=>date('Y-m-d')))->result_array();
+			$tgl_sewa = date('Y-m-d');
 		}
-		// print_r($id);
+		// print_r(date('l'));
+		if(date('l')=='Sunday'){
+			$sunday = date('Y-m-d');
+		}else{
+			$sunday = date('Y-m-d',strtotime( "next sunday",strtotime($tgl_sewa)));
+		}
+		if(date('l')=="Monday"){
+			$monday = date('Y-m-d');
+		}else{
+			$monday = date('Y-m-d',strtotime( "previous monday",strtotime($tgl_sewa)));
+		}
+		// print_r($sunday);
+		$jadwal = $this->transaksi_model->get(array('id_lapang'=>$id,'tgl_main >='=>$monday,'tgl_main <='=>$sunday))->result_array();
+		// print_r($monday);
+
 		echo json_encode($jadwal);
 	}
 	PUBLIC function view_all(){
@@ -73,6 +90,8 @@ class Welcome extends CI_Controller {
 		$data['content']= 'view_all';
 		$data['slide']= null;
 		$data['sidebar']='sidebar';
+		$data['provinsi'] = $this->provider_model->get_provinsi()->result_array();
+
 		$data['provider'] = $this->provider_model->get()->result_array();
 		$data['lapang'] = $this->provider_model->get()->result_array();
 		$data['pagination'] = $this->provider_model->_generate_pagination();

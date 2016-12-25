@@ -15,7 +15,7 @@
                           $foto = $this->gallery_model->get(array('id_provider' => $value['id_provider'],'is_display_picture' => '1'))->row_array();
                           $pic_path = base_url()."assets/img/".$value['id_provider']."/".$foto['foto'];
                         ?>
-                        <a href="single.html"><img class="img-responsive chain" src="<?= $pic_path ?>" alt=" " /></a>
+                        <a href="single.html"><img class="img-responsive" style="height:250px;" src="<?= $pic_path ?>" alt=" " /></a>
                         
 
                         <span class="star"> </span>

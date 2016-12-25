@@ -21,7 +21,7 @@ class Login extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model(array('login_model'));
+		$this->load->model(array('login_model','provider_model'));
 	}
 	public function index(){
 
@@ -32,6 +32,7 @@ class Login extends CI_Controller {
 		$data['content']='login';
 		$data['slide']=null;
 		$data['sidebar']='sidebar';
+		$data['provinsi'] = $this->provider_model->get_provinsi()->result_array();
 		$this->load->view('tamplate',$data);
 	}
 	public function check(){

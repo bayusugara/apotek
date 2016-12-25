@@ -63,7 +63,7 @@
           <div class="modal-body">
             <form name="form-<?php echo $title; ?>" id="myForm" method="POST" class=" form-horizontal">
             <div class="row">
-                <div class="form-group required">
+                <div class="form-group required" style="margin-bottom: 20px">
                   <label class="col-sm-3 control-label">Nama</label>
                   <div class="col-sm-8">
                   <input type="text" class="form-control" maxlength="50" required name="nama" placeholder="Nama">
