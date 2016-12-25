@@ -19,7 +19,7 @@
 	</script>
 </head>
 <body> 
-	 	<div class=" single_top pull-left" style="width:100%;" >
+	 	<div class=" single_top pull-left" style="width:100%;">
 	      <div class="single_grid">
 				<div class="grid images_3_of_2">
 						<ul id="etalage">
