@@ -132,7 +132,7 @@
         if($userdata['id'] != null){
         ?>
         <br>
-        <center><button class="btn btn-lg btn-primary"  data-toggle="modal" data-target="#myModalBooking">Booking Here !</button></center>
+        <center><button class="btn btn-lg btn-primary btn-booking"  data-toggle="modal" data-target="#myModalBooking" onclick="openModalTransaksi(this);">Booking Here !</button></center>
     	<?php }?>
       </div>
       <div class="modal-body">
@@ -154,29 +154,42 @@
         <h4 class="modal-title" id="myModalLabel">Booking</h4>
       </div>
       <div class="modal-body">
+      <form name="form-transaksi" id="myForm" method="POST" class=" form-horizontal">
       	<div class="row">
 	        <div class="form-group required">
 	          <label class="col-sm-3 control-label">Tanggal Booking</label>
 	          <div class="col-sm-8">
-	          	<input type="date" class="form-control" required name="tanggal">
+	          	<input class="datepicker form-control" data-date-start-date="<?=date('Y-m-d');?>" data-date-end-date="<?=date('Y-m-d',strtotime("+7 day"));?>" data-date-format="yyyy-mm-dd" onchange="checkJadwal();" required name="tanggal">
+	          	<input type="hidden" name="id_lapang">
 	          </div>
 	        </div>
-	        <div class="form-group required">
+	        <div class="form-group required" style="padding-top: 10px">
 	          <label class="col-sm-3 control-label">Jam Booking</label>
 	          <div class="col-sm-4">
 	            <!-- <textarea name="alamat" class="form-control"></textarea> -->
-	            <input class="form-control" type="time" name="jam_mulai">
+	            <input class="form-control" type="time" onchange="checkJadwal();" name="jam_mulai" required="">
 	          </div>
 	          <div class="col-sm-4">
 	            <!-- <textarea name="alamat" class="form-control"></textarea> -->
-	            <input class="form-control" type="time" name="jam_tutup">
+	            <input class="form-control" type="time" onchange="checkJadwal();" name="jam_selesai" required="">
+	          </div>
+	        </div>
+	        <div class="form-group required" style="padding-top: 10px">
+	          <label class="col-sm-3 control-label">Total Bayar</label>
+	          <div class="col-sm-4">
+	            <!-- <textarea name="alamat" class="form-control"></textarea> -->
+	            <input class="form-control" type="text" name="total_bayar" disabled="">
 	          </div>
 	        </div>
 		</div>
+
+    </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button class="btn btn-primary save-btn" onclick="saveTransaksi()" value="">Book now</button>
       </div>
+
     </div>
   </div>
 </div>

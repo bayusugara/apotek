@@ -295,6 +295,52 @@ class Welcome extends CI_Controller {
         // print_r($query);
         echo json_encode($query);
     }
+    function save_transaksi(){
+    	// $data['tgl_transaksi'] = date('Y-m-d');
+    	$data['tgl_sewa'] = date('Y-m-d');
+    	$data['tgl_main'] = $_POST['tanggal'];
+    	$data['id_lapang'] = $_POST['id_lapang'];
+    	$data['jam_mulai'] = $_POST['jam_mulai'];
+    	$data['jam_selsai'] = $_POST['jam_selesai'];
+
+    	$data['status'] = 0;
+    	$user = $this->login_model->get();
+    	$customer = $this->customer_model->get(array("user_login_id"=>$user['id']))->row_array();
+    	$data['id_customer'] = $customer['id_customer'];
+    	$data['kode_transaksi'] = 'TRX'.$customer['id_customer'].$data['id_lapang'].rand(1000,3);
+    	if($this->transaksi_model->add($data)){
+    		$enc['lapang'] = $this->provider_model->get_lapang(array('id_lapang'=>$_POST['id_lapang']))->row_array();
+    		$enc['provider'] = $this->provider_model->get(array('id_provider'=>$enc['lapang']['id_provider']))->row_array();
+    		echo json_encode($enc);
+    	}else{
+    		echo "0";
+    	}
+    			
+    }
+    function checkJadwal(){
+    	$tanggal = $_POST['tanggal'];
+    	$jam_mulai = strtotime($_POST['jam_mulai']);
+    	$jam_selesai = strtotime($_POST['jam_selesai']);
+    	$id_lapang = $_POST['id_lapang'];
+    	$query = $this->transaksi_model->get(array('id_lapang' => $id_lapang, 'tgl_main' => $tanggal))->result_array();
+    	$lapang = $this->provider_model->get_lapang(array('id_lapang' => $id_lapang ))->row_array();
+    	$total = ($jam_selesai - $jam_mulai)*$lapang['harga']/2; 
+    	foreach ($query as $key => $value) {
+
+            // $work_request = $this->work_request_model->get(array('work_request.id'=>$value['work_request_id']))->row_array();
+            // print_r($work_request);
+            // $student = 
+          
+            $start_time2 = strtotime($value['jam_mulai']);
+            $end_time2 = strtotime($value['jam_selsai']);
+            if(($jam_selesai <= $end_time2) && ($jam_mulai >= $start_time2)){
+                $total=0;
+            }
+        
+        }
+        echo $total; 
+        // print_r($query);
+    }
     // function get_jadwal_lapangan(){
     //     $id = $this->input->post('idx');
     //     $tgl_sewa = $this->input->post('tgl_sewa');

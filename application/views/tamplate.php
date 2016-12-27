@@ -11,6 +11,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link href="<?=base_url();?>assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!--theme-style-->
 <link href="<?=base_url();?>assets/css/style.css" rel="stylesheet" type="text/css" media="all" />  
+<link href="<?=base_url();?>assets/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" media="all" />  
+
 <!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -18,6 +20,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
 <!--//fonts-->
 <script src="<?=base_url();?>assets/js/jquery.min.js"></script>
+<script src="<?=base_url();?>assets/js/bootstrap-datepicker.min.js"></script>
+
+<script src="<?=base_url();?>assets/plugin/bootbox/bootbox.js"></script>
+
 <!--script-->
 </head>
 <body> 
@@ -61,6 +67,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 ?>
                 <!--initiate accordion-->
         <script type="text/javascript">
+            $('.datepicker').datepicker();
             $(function() {
                 var menu_ul = $('.menu > li > ul'),
                        menu_a  = $('.menu > li > a');

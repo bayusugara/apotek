@@ -247,3 +247,21 @@ function change_pass(){
 	    console.log(base_url);
 	  }
 }
+function updateStatus(el){
+	var idx = $(el).closest('tr').attr('idx');
+
+	$.post( base_url+"admin/provider/updateStatus", {idx: idx}).done(function( data1 ) {
+		if(data1=='0'){
+			// if($(el).html())
+			bootbox.alert('Status gagal di update');
+		}else{
+			if($(el).html() == 'Served'){
+				$(el).html("Pending");
+			}else{
+				$(el).html("Served");
+			}
+			bootbox.alert('Status berhasil di update');
+		}
+	})
+	console.log($(el).html());
+}

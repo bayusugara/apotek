@@ -65,6 +65,19 @@ class Home extends CI_Controller {
         $data['scripts'] = ['js/provider/general.js','js/provider/lapang.js','plugin/form-validation/jquery.validate.min.js','plugin/form-validation/extjquery.validate.min.js','plugin/bootbox/bootbox.js'];
         $this->load->view('admin_provider/tamplate_provider',$data);
     }
+    public function transaksi(){
+        $user = $this->login_model->get();
+        $data['userdata'] = $user;
+        $data['provider'] = $this->provider_model->get(array('user_login_id'=>$user['id']))->row_array();
+        $data['navbar']='admin_provider/navbar_provider';
+        $data['content']='admin_provider/content_transaksi';
+        $data['slide']=null;
+        $data['transaksi'] = $query = $this->provider_model->get_provider_trans(array("provider.id_provider"=>$data['provider']['id_provider']))->result_array();
+        $data['sidebar']='admin_provider/sidebar_provider';
+        $data['title']='Transaksi';
+        $data['scripts'] = ['js/provider/general.js','plugin/form-validation/jquery.validate.min.js','plugin/form-validation/extjquery.validate.min.js','plugin/bootbox/bootbox.js'];
+        $this->load->view('admin_provider/tamplate_provider',$data);
+    }
 	function check_role(){
 		$user = $this->login_model->get();
 		if(isset($user)){

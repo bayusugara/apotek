@@ -40,7 +40,7 @@
                             <a data-target="#modal-lapang" data-backdrop="static" data-toggle="modal" class="lapangan btn btn-sm btn-white text-black"><i class="fa fa-soccer-ball-o fa-lg"></i></a> 
                             <a data-target="#modal-gallery" data-backdrop="static" data-toggle="modal" class="gallery btn btn-sm btn-white text-black"><i class="fa fa-file-image-o fa-lg"></i></a>
                             <a data-target="#modal-change-password" data-backdrop="static" data-toggle="modal" class="change-pass btn btn-sm btn-white text-black"><i class="fa fa-key fa-lg"></i></a> 
-                            <a data-target="#modal-change-password" data-backdrop="static" data-toggle="modal" class="change-pass btn btn-sm btn-white text-black"><i class="fa fa-calendar fa-lg"></i></a>       
+                            <a data-target="#modal-transaksi" data-backdrop="static" data-toggle="modal" class="show-trans btn btn-sm btn-white text-black"><i class="fa fa-calendar fa-lg"></i></a>       
                             <a class="delete btn btn-sm btn-white text-red" href="javascript:;"><i class="fa fa-trash-o fa-lg"></i></a>
                         </td>
                     </tr>
@@ -290,6 +290,44 @@
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
           </form>
+        </div>
+
+      </div>
+    </div>
+    <div id="modal-transaksi" class="modal fade" role="dialog" style="display:none;">
+      <div class="modal-dialog modal-lg" style="width: 80%">
+
+        <!-- Modal content-->
+        <div class="modal-content" >
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Lihat Transaksi<br>
+          </h4>
+
+          </div>
+          <div class="modal-body">
+            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-modal">
+            <thead>
+                <tr>
+                    <th>Kode Transaksi</th>
+                    <th>Tanggal Sewa</th>
+                    <th>Tanggal Main</th>
+                    <th>Jam Mulai</th>
+                    <th>Jam Selesai</th>
+                    <th>Total Bayar</th>
+                    <th>Penyewa</th>
+                    <th>Lapang</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
         </div>
 
       </div>

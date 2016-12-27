@@ -21,7 +21,7 @@ class Provider extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model(array('provider_model','fasilitas_model','login_model','user_model','gallery_model'));
+		$this->load->model(array('provider_model','fasilitas_model','login_model','user_model','gallery_model','transaksi_model'));
 	}
 	public function index(){
 		//ngambil data user dari database
@@ -42,7 +42,6 @@ class Provider extends CI_Controller {
 		$data['provider'] = $this->provider_model->get()->result_array();
 		$data['fasilitas'] = $this->fasilitas_model->get()->result_array();
         $data['provinsi'] = $this->provider_model->get_provinsi()->result_array();
-
 		$data['scripts'] = ['js/admin/provider.js','plugin/form-validation/jquery.validate.min.js','plugin/form-validation/extjquery.validate.min.js','plugin/bootbox/bootbox.js'];
 		$this->load->view('admin/tamplate_admin',$data);
 	}
@@ -284,6 +283,46 @@ class Provider extends CI_Controller {
         }
         // print_r($query);
         echo json_encode($query);
+    }
+    function get_trans_by_id(){
+        $id = $_POST['idx'];
+        $query = $this->provider_model->get_provider_trans(array("provider.id_provider"=>$id))->result_array();
+        $result = [];
+        foreach($query as $row => $value){
+            // for ($i=0; $i < ; $i++) { 
+                # code...
+                $result[$row][0]=$value['kode_transaksi'];
+                $result[$row][1]=$value['tgl_sewa'];
+                $result[$row][2]=$value['tgl_main'];
+                $result[$row][3]=$value['jam_mulai'];
+                $result[$row][4]=$value['jam_selsai'];
+                $result[$row][5]=$value['total_bayar'];
+                $result[$row][6]=$value['nama'];
+                $result[$row][7]=$value['kode_lapang'];
+                if($value["status"] == 0){
+                    $status = 'Pending';
+                }else{
+                    $status = "Served";
+                }
+                $result[$row][8]='<span class="tag tag-danger">'.$status.'</span>';
+            // }
+        }
+        // print_r($query);
+        echo json_encode($result);
+    }
+    function updateStatus(){
+        $id = $_POST['idx'];
+        $transaksi = $this->transaksi_model->get(array('kode_transaksi' =>$id  ))->row_array();
+        if($transaksi['status'] == 0){
+            $data['status'] = 1;
+        }else{
+            $data['status'] = 0;
+        }
+        if($this->transaksi_model->update($id,$data)){
+            echo "1";
+        }else{
+            echo "0";
+        }
     }
 
 }

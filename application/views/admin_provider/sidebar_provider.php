@@ -22,7 +22,7 @@
                             <a href="<?=base_url();?>admin_provider/lapang/"><i class="fa fa-soccer-ball-o fa-fw"></i> Lapang</a>
                         </li>
                         <li>
-                            <a href="<?=base_url();?>admin/customer/"><i class="fa fa-money fa-fw"></i> Teransaksi</a>
+                            <a href="<?=base_url();?>admin_provider/transaksi/"><i class="fa fa-money fa-fw"></i> Teransaksi</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Report<span class="fa arrow"></span></a>

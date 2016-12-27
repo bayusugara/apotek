@@ -1,9 +1,12 @@
+var table = $('#dataTables-modal').DataTable({
+        		responsive: true
+    		});
 $(document).ready(function() {
 	initCloseBtn();
 	initValidatorStyle();
 	initValidatorFormMain();
 	initValidatorFormPass();
-	
+	table;
 });
 function initValidatorFormMain(){
 	var validator = $( "#myForm" ).validate({
@@ -427,3 +430,31 @@ function change_pass(){
 	    console.log(base_url);
 	  }
 }
+$(document).on('click','.show-trans',function(){
+	var idx = $(this).closest('tr').attr('idx');
+	$('#dataTables-modal').find('tbody').empty();
+	$.post( base_url+"admin/provider/get_trans_by_id", {idx: idx}).done(function( data ) {
+		var json = $.parseJSON(data);
+		// for (var i = 0; i < json.length; i++) {
+		// 	$('#dataTables-modal').append('<tr><td>'+json[i].kode_transaksi+
+		// 		'</td><td>'+json[i].tgl_sewa+'</td><td>'+json[i].tgl_main+
+		// 		'</td><td>'+json[i].jam_mulai+'</td><td>'+
+		// 		json[i].jam_selsai+'</td><td>'+json[i].total_bayar+'</td><td>'+json[i].id_customer+
+		// 		'</td><td>'+json[i].id_lapang+'</td><td>'+json[i].status+'</td><td></td></tr>');
+		// }
+		// $.each(data.data, function(){
+		//    this[0] = 'John Smith';
+		// });
+
+		// Clear table
+		table.clear();
+
+		// Add updated data
+		table.rows.add(json);
+		table.draw();
+		
+	});
+
+	
+    // alert();
+})
