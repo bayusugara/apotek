@@ -324,7 +324,7 @@ class Welcome extends CI_Controller {
     	$id_lapang = $_POST['id_lapang'];
     	$query = $this->transaksi_model->get(array('id_lapang' => $id_lapang, 'tgl_main' => $tanggal))->result_array();
     	$lapang = $this->provider_model->get_lapang(array('id_lapang' => $id_lapang ))->row_array();
-    	$total = ($jam_selesai - $jam_mulai)*$lapang['harga']/2; 
+    	$total = (abs($_POST['jam_selesai'] - $_POST['jam_mulai']))*$lapang['harga']/2; 
     	foreach ($query as $key => $value) {
 
             // $work_request = $this->work_request_model->get(array('work_request.id'=>$value['work_request_id']))->row_array();
