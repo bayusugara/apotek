@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 12, 2016 at 04:41 PM
+-- Generation Time: Dec 29, 2016 at 05:13 AM
 -- Server version: 5.6.26
 -- PHP Version: 5.5.28
 
@@ -112,17 +112,20 @@ CREATE TABLE IF NOT EXISTS `provider` (
   `status` tinyint(1) NOT NULL,
   `longitude` float DEFAULT '0',
   `latitude` float DEFAULT '0',
-  `provinsi_id` int(11) NOT NULL
+  `provinsi_id` int(11) NOT NULL,
+  `jam_buka` tinyint(2) DEFAULT '8',
+  `jam_tutup` tinyint(2) DEFAULT NULL,
+  `no_rek` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `provider`
 --
 
-INSERT INTO `provider` (`id_provider`, `nama`, `lokasi`, `user_login_id`, `status`, `longitude`, `latitude`, `provinsi_id`) VALUES
-(1, 'Krisna Futsal', 'jalan baladwa gang 2 no i30B', 2, 1, 0, 0, 1),
-(8, 'testing2', 'bandung2', 11, 1, 0, 0, 2),
-(10, 'adsads', 'jlkjklj', 19, 1, 5345650, 6786880, 1);
+INSERT INTO `provider` (`id_provider`, `nama`, `lokasi`, `user_login_id`, `status`, `longitude`, `latitude`, `provinsi_id`, `jam_buka`, `jam_tutup`, `no_rek`) VALUES
+(1, 'Krisna Futsal', 'jalan baladwa gang 2 no i30B', 2, 1, 0, 0, 1, 8, 22, ''),
+(8, 'testing2', 'bandung2', 11, 1, 0, 0, 2, 8, 22, ''),
+(10, 'adsads', 'jlkjklj', 19, 1, 5345650, 6786880, 1, 8, 21, '');
 
 -- --------------------------------------------------------
 
@@ -169,12 +172,12 @@ CREATE TABLE IF NOT EXISTS `provider_gallery` (
 INSERT INTO `provider_gallery` (`id`, `foto`, `id_provider`, `is_display_picture`) VALUES
 (4, 'add-icon.png', 8, 0),
 (5, 'book.png', 8, 0),
-(7, 'close_blue.png', 8, 0),
-(8, 'add-icon.png', 1, 0),
-(12, 'file_add.png', 10, 0),
-(16, '067861-3d-glossy-blue-orb-icon-alphanumeric-crossing.png', 1, 1),
-(17, 'book.png', 1, 0),
-(19, 'file_add.png', 1, 0);
+(7, 'close_blue.png', 8, 1),
+(8, 'lapang-futsal.png', 1, 0),
+(12, 'usaha-lapangan-futsal.png', 10, 1),
+(16, 'lapangan futsal.png', 1, 1),
+(17, '86d71b26214bd5005ff3ca692c3cde94.png', 1, 0),
+(19, '86d71b26214bd5005ff3ca692c3cde94.png', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -234,16 +237,30 @@ INSERT INTO `provinsi` (`provinsi_id`, `provinsi_nama`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `transaksi` (
-  `kode_transaksi` varchar(10) NOT NULL,
-  `tgl_transaksi` date NOT NULL,
+  `kode_transaksi` varchar(50) NOT NULL,
+  `tgl_transaksi` date DEFAULT NULL,
   `tgl_sewa` date NOT NULL,
+  `tgl_main` date NOT NULL,
   `jam_mulai` time NOT NULL,
   `jam_selsai` time NOT NULL,
-  `total_bayar` int(11) NOT NULL,
+  `total_bayar` int(11) NOT NULL DEFAULT '0',
   `id_lapang` int(10) unsigned NOT NULL,
   `id_customer` int(10) unsigned zerofill NOT NULL,
-  `status` tinyint(1) NOT NULL
+  `status` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `transaksi`
+--
+
+INSERT INTO `transaksi` (`kode_transaksi`, `tgl_transaksi`, `tgl_sewa`, `tgl_main`, `jam_mulai`, `jam_selsai`, `total_bayar`, `id_lapang`, `id_customer`, `status`) VALUES
+('TR001', '2016-11-11', '2016-12-23', '2016-12-23', '08:00:00', '10:00:00', 0, 4, 0000000001, 0),
+('TR002', '2016-11-09', '2016-12-25', '2016-12-25', '08:00:00', '10:00:00', 0, 5, 0000000001, 0),
+('TR003', '2016-11-09', '2016-12-24', '2016-12-24', '11:00:00', '12:00:00', 0, 4, 0000000001, 0),
+('TRX000000000111846', NULL, '2016-12-28', '2016-12-28', '08:00:00', '09:00:00', 0, 11, 0000000001, 0),
+('TRX00000000014210', NULL, '2016-12-25', '2016-12-25', '14:00:00', '16:00:00', 0, 4, 0000000001, 0),
+('TRX00000000014613', NULL, '2016-12-27', '2016-12-28', '08:00:00', '10:00:00', 0, 4, 0000000001, 0),
+('TRX00000000014852', NULL, '2016-12-25', '2016-12-25', '19:00:00', '21:00:00', 0, 4, 0000000001, 0);
 
 -- --------------------------------------------------------
 
@@ -266,7 +283,7 @@ CREATE TABLE IF NOT EXISTS `user_login` (
 INSERT INTO `user_login` (`id`, `username`, `email`, `password`, `role`) VALUES
 (1, 'krisna', 'kfebrianto96@gmail.com', 'ae2b1fca515949e5d54fb22b8ed95575', 1),
 (2, 'febraintop', 'kfebrianto98@gmail.com', 'ae2b1fca515949e5d54fb22b8ed95575', 2),
-(11, 'testing2', 'kfebrianto2016@gmail.com', '938b4263f09b8b1dae8f027d06681ec9', 2),
+(11, 'testing2', 'kfebrianto2016@gmail.com', 'ae2b1fca515949e5d54fb22b8ed95575', 2),
 (12, 'testing2', 'kfebrianto2@gmail.com', 'ae2b1fca515949e5d54fb22b8ed95575', 3),
 (15, 'testing', 'admin@gie-art.com', '5f4dcc3b5aa765d61d8327deb882cf99', 3),
 (19, 'adsa', 'dasa@ads', 'a8f5f167f44f4964e6c998dee827110c', 2);
