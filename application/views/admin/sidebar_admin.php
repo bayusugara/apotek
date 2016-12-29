@@ -28,13 +28,13 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Report<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">Report Transasksi</a>
+                                    <a href="<?=base_url();?>admin/report/transaksi">Report Transasksi</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Report Penyewa</a>
+                                    <a href="<?=base_url();?>admin/report/penyewa">Report Penyewa</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Report Provider</a>
+                                    <a href="<?=base_url();?>admin/report/provider">Report Provider</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

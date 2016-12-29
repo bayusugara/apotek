@@ -28,7 +28,7 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Report<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">Report Transasksi</a>
+                                    <a href="<?=base_url();?>admin_provider/report_transaksi/">Report Transasksi</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

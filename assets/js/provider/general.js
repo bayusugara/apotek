@@ -4,6 +4,14 @@ $(document).ready(function() {
 	initValidatorFormMain();
 	initValidatorFormPass();
 	// console.log(idx);
+	$(document).ready(function() {
+    // $('#dataTables-export').DataTable( {
+    //     dom: 'Bfrtip',
+    //     buttons: [
+    //         'copy', 'csv', 'excel', 'pdf', 'print'
+    //     ]
+    // } );
+} );
 });
 function initValidatorFormMain(){
 	var validator = $( "#myForm" ).validate({

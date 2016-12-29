@@ -307,5 +307,18 @@ class Home extends CI_Controller {
         // print_r($query);
         echo json_encode($query);
     }
+    function report_transaksi(){
+        $user = $this->login_model->get();
+        $data['userdata'] = $user;
+        $data['provider'] = $this->provider_model->get(array('user_login_id'=>$user['id']))->row_array();
+        $data['navbar']='admin_provider/navbar_provider';
+        $data['content']='admin_provider/content_report_transaksi';
+        $data['slide']=null;
+        $data['transaksi'] = $query = $this->provider_model->get_provider_trans(array("provider.id_provider"=>$data['provider']['id_provider']))->result_array();
+        $data['sidebar']='admin_provider/sidebar_provider';
+        $data['title']='Laporan Transaksi';
+        $data['scripts'] = ['js/provider/general.js','plugin/form-validation/jquery.validate.min.js','plugin/form-validation/extjquery.validate.min.js','plugin/bootbox/bootbox.js','plugin/datatables-plugins/dataTables.buttons.min.js','plugin/datatables-plugins/buttons.flash.min.js','plugin/datatables-plugins/jszip.min.js','plugin/datatables-plugins/pdfmake.min.js','plugin/datatables-plugins/vfs_fonts.js','js/bootstrap-datepicker.min.js','plugin/datatables-plugins/buttons.html5.min.js','plugin/bootbox/bootbox.js','plugin/datatables-plugins/buttons.print.min.js',];
+        $this->load->view('admin_provider/tamplate_provider',$data);
+    }
 
 }

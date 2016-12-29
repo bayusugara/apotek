@@ -22,7 +22,7 @@
 
     <!-- DataTables CSS -->
     <link href="<?=base_url(); ?>assets/plugin/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
-
+    <link href="<?=base_url(); ?>assets/plugin/datatables-plugins/buttons.dataTables.min.css" rel="stylesheet">
     <!-- DataTables Responsive CSS -->
     <link href="<?=base_url(); ?>assets/plugin/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 
@@ -276,7 +276,7 @@
     <script src="<?=base_url();?>assets/plugin/datatables-responsive/dataTables.responsive.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="<?=base_url();?>assets/js/sb-admin-2.min.js"></script>
-
+    <script src="<?=base_url();?>assets/js/moment.js"></script>
     <?php  
     for($i=0;$i<count($scripts);$i++):
     ?>
@@ -286,8 +286,60 @@
     <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script> -->
     <script>
     $(document).ready(function() {
+        $('.datepicker').datepicker();
         $('#dataTables-example').DataTable({
             responsive: true
+        });
+
+      var table = $('#dataTables-export').DataTable( {
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                  extend: 'excelHtml5',
+                  title: 'Data export laporan transaksi - '+'<?=date('Y-m-d');?>'
+                },
+                {
+                    extend: 'pdfHtml5',
+                    title: 'Data export laporan transaksi - '+'<?=date('Y-m-d');?>'
+                }
+            ]
+
+        } );
+      $.fn.dataTableExt.afnFiltering.push(
+            function( oSettings, aData, iDataIndex ) {
+
+                var grab_daterange = $("#date_range").val();
+                // var give_results_daterange = grab_daterange.split(" to ");
+                var filterstart = $('#min').val();
+                var filterend = $('#max').val();
+                var iStartDateCol = 1; //using column 2 in this instance
+                var iEndDateCol = 1;
+                var tabledatestart = aData[iStartDateCol];
+                var tabledateend= aData[iEndDateCol];
+
+                if ( filterstart === "" && filterend === "" )
+                {
+                    return true;
+                }
+                else if ((moment(filterstart).isSame(tabledatestart) || moment(filterstart).isBefore(tabledatestart)) && filterend === "")
+                {
+                    return true;
+                }
+                else if ((moment(filterstart).isSame(tabledatestart) || moment(filterstart).isAfter(tabledatestart)) && filterstart === "")
+                {
+                    return true;
+                }
+                else if ((moment(filterstart).isSame(tabledatestart) || moment(filterstart).isBefore(tabledatestart)) && (moment(filterend).isSame(tabledateend) || moment(filterend).isAfter(tabledateend)))
+                {
+                    return true;
+                }
+                return false;
+            }
+            );
+        $('.datepicker').datepicker()
+        .on('change', function(e) {
+            // `e` here contains the extra attributes
+            table.draw();
         });
         var base_url = '<?=base_url();?>';
         console.log(base_url)

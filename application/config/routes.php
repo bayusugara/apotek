@@ -61,4 +61,5 @@ $route['admin_provider'] = 'admin_provider/home';
 $route['admin_provider/gallery'] = 'admin_provider/home/gallery';
 $route['admin_provider/lapang'] = 'admin_provider/home/lapang';
 $route['admin_provider/transaksi'] = 'admin_provider/home/transaksi';
+$route['admin_provider/report_transaksi'] = 'admin_provider/home/report_transaksi';
 
