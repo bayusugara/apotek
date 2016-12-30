@@ -8,7 +8,6 @@
 							<div class="mation">
 								<div class="alert alert-danger" style="display: none">Wrong password</div>
 								<span>Old Password<label>*</label></span>
-								<input type="hidden" class="form-control" name="id">
 								<input type="password" class="form-control" placeholder="Password"  id="password_old" name="password_old" class="form-control" required >
 								<p><font color="red" size="4">										
 									<?php
@@ -18,7 +17,6 @@
 							 			} 
 									?>
 								</font></p>
-								<input type="hidden" class="form-control" name="id">
 								<span>Password<label>*</label></span>
 								<input type="password" placeholder="Password" id="password" name="password" class="form-control" required >
 								<span>Confirm Password<label>*</label></span>

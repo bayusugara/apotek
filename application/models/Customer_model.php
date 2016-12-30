@@ -28,6 +28,14 @@ class Customer_model extends CI_Model {
 		// $this->db->insert();
 		return $query;
 	}
+	function check_password_customer($pass, $id){
+        $this->db->where(array('password = '=> $pass,'role = '=> 3));
+        // if($id > 0){
+        //     $this->db->where(array('id = '=> $id,'role = '=> 1));
+        // }
+        $result = $this->db->get('user_login')->row_array();
+        return $result;
+    }
 	function check_password($pass, $id){
         $this->db->where(array('password = '=> $pass,'role = '=> 1));
         // if($id > 0){
