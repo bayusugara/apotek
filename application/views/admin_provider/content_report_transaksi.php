@@ -20,6 +20,15 @@
                 <input type="text" class="datepicker form-control" id="max">
               </div>
             </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Filter Date</label>
+                <select name="date" class="form-control">
+                  <option value="1">Tanggal Transaksi</option>
+                  <option value="2">Tanggal Main</option>
+                </select>
+              </div>
+            </div>
           <!-- </div> -->
         </div>
         <div class="row">

@@ -39,6 +39,9 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        <li>
+                            <a href="<?=base_url();?>admin/backup_restore/"><i class="fa fa-database fa-fw"></i> Backup & Restore</a>
+                        </li>
                         
                     </ul>
                 </div>

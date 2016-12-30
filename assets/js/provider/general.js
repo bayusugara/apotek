@@ -13,6 +13,7 @@ $(document).ready(function() {
     // } );
 } );
 });
+
 function initValidatorFormMain(){
 	var validator = $( "#myForm" ).validate({
 		rules: {
@@ -47,6 +48,31 @@ function initValidatorFormMain(){
 	      }
 	    }
 	});
+}
+function restoredb(){
+	bootbox.dialog({message:"Tunggu restore data sedang di lakukan.",closeButton:false,onEscape:false});
+	var data = new FormData($('#galleryForm')[0])
+	$.ajax({
+           type:"POST",
+           url:base_url+"admin/backup_restore/restoredb",
+           data:data,
+           mimeType: "multipart/form-data",
+            contentType: false,
+            cache: false,
+            processData: false,
+           success:function(data)
+          {
+            if (data != "0"){
+            	bootbox.hideAll();
+				bootbox.alert("Data berhasil direstore.", function(){
+				// get_gallery(data);
+				})
+			}else{
+				bootbox.alert("Data gagal direstore.");
+			}		
+
+           }
+       });
 }
 function initValidatorFormPass(){
 	var validator = $( "#passwordForm" ).validate({

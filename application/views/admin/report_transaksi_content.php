@@ -11,13 +11,22 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label>Start Date</label>
-                <input type="text" id="min" class="datepicker form-control">
+                <input type="text" id="min" maxdate="max" class="datepicker form-control">
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label>End Date</label>
-                <input type="text" id="max" class="datepicker form-control">
+                <input type="text" id="max" mindate="min" class="datepicker form-control">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Filter Date</label>
+                <select name="date" class="form-control">
+                  <option value="1">Tanggal Transaksi</option>
+                  <option value="2">Tanggal Main</option>
+                </select>
               </div>
             </div>
           <!-- </div> -->

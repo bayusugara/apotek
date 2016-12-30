@@ -312,8 +312,8 @@
                 // var give_results_daterange = grab_daterange.split(" to ");
                 var filterstart = $('#min').val();
                 var filterend = $('#max').val();
-                var iStartDateCol = 1; //using column 2 in this instance
-                var iEndDateCol = 1;
+                var iStartDateCol = $('[name="date"]').val(); //using column 2 in this instance
+                var iEndDateCol = $('[name="date"]').val();
                 var tabledatestart = aData[iStartDateCol];
                 var tabledateend= aData[iEndDateCol];
 
@@ -340,6 +340,9 @@
         .on('change', function(e) {
             // `e` here contains the extra attributes
             table.draw();
+        });
+        $('[name="date"]').on('change',function(){
+             table.draw();
         });
         var base_url = '<?=base_url();?>';
         console.log(base_url)
