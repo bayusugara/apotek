@@ -42,7 +42,7 @@ class Customer extends CI_Controller {
 		//init data
 		$data['customer'] = $this->customer_model->get()->result_array();
 
-		$data['scripts'] = ['js/admin/customer.js','plugin/form-validation/jquery.validate.min.js','plugin/form-validation/extjquery.validate.min.js','plugin/bootbox/bootbox.js'];
+		$data['scripts'] = ['js/admin/customer.js','plugin/form-validation/jquery.validate.min.js','plugin/form-validation/extjquery.validate.min.js','plugin/bootbox/bootbox.js','js/bootstrap-datepicker.min.js'];
 		$this->load->view('admin/tamplate_admin',$data);
 	}
 	function check_role(){

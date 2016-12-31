@@ -42,7 +42,7 @@ class Provider extends CI_Controller {
 		$data['provider'] = $this->provider_model->get()->result_array();
 		$data['fasilitas'] = $this->fasilitas_model->get()->result_array();
         $data['provinsi'] = $this->provider_model->get_provinsi()->result_array();
-		$data['scripts'] = ['js/admin/provider.js','plugin/form-validation/jquery.validate.min.js','plugin/form-validation/extjquery.validate.min.js','plugin/bootbox/bootbox.js'];
+		$data['scripts'] = ['js/admin/provider.js','plugin/form-validation/jquery.validate.min.js','plugin/form-validation/extjquery.validate.min.js','plugin/bootbox/bootbox.js','js/bootstrap-datepicker.min.js'];
 		$this->load->view('admin/tamplate_admin',$data);
 	}
 
@@ -300,9 +300,11 @@ class Provider extends CI_Controller {
                 $result[$row][6]=$value['nama'];
                 $result[$row][7]=$value['kode_lapang'];
                 if($value["status"] == 0){
-                    $status = 'Pending';
+                    $status = 'Waiting Transfer';
+                }else if($value["status"] == 1){
+                    $status = "Waiting Approval";
                 }else{
-                    $status = "Served";
+                    $status = "Booking Complete";
                 }
                 $result[$row][8]='<span class="tag tag-danger">'.$status.'</span>';
             // }
@@ -315,8 +317,8 @@ class Provider extends CI_Controller {
         $transaksi = $this->transaksi_model->get(array('kode_transaksi' =>$id  ))->row_array();
         if($transaksi['status'] == 0){
             $data['status'] = 1;
-        }else{
-            $data['status'] = 0;
+        }else if($data['status'] = 1){
+            $data['status'] = 2;
         }
         if($this->transaksi_model->update($id,$data)){
             echo "1";

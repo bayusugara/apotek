@@ -38,7 +38,7 @@ class Home extends CI_Controller {
 		$data['sidebar']='admin_provider/sidebar_provider';
 		$data['title']='Dashboard';
 		$data['provider'] = $this->provider_model->get(array('user_login_id'=>$user['id']))->row_array();
-		$data['scripts'] = ['js/provider/general.js','plugin/form-validation/jquery.validate.min.js','plugin/form-validation/extjquery.validate.min.js','plugin/bootbox/bootbox.js'];
+		$data['scripts'] = ['js/provider/general.js','js/admin/dashboard.js','plugin/form-validation/jquery.validate.min.js','plugin/form-validation/extjquery.validate.min.js','plugin/highcharts/highcharts.js','plugin/bootbox/bootbox.js','js/bootstrap-datepicker.min.js'];
 		$this->load->view('admin_provider/tamplate_provider',$data);
 	}
     public function gallery(){
@@ -50,7 +50,7 @@ class Home extends CI_Controller {
         $data['slide']=null;
         $data['sidebar']='admin_provider/sidebar_provider';
         $data['title']='Galeri Foto';
-        $data['scripts'] = ['js/provider/general.js','js/provider/gallery.js','plugin/form-validation/jquery.validate.min.js','plugin/form-validation/extjquery.validate.min.js','plugin/bootbox/bootbox.js'];
+        $data['scripts'] = ['js/provider/general.js','js/provider/gallery.js','plugin/form-validation/jquery.validate.min.js','plugin/form-validation/extjquery.validate.min.js','plugin/bootbox/bootbox.js','js/bootstrap-datepicker.min.js'];
         $this->load->view('admin_provider/tamplate_provider',$data);
     }
     public function lapang(){
@@ -62,7 +62,7 @@ class Home extends CI_Controller {
         $data['slide']=null;
         $data['sidebar']='admin_provider/sidebar_provider';
         $data['title']='Lapangan';
-        $data['scripts'] = ['js/provider/general.js','js/provider/lapang.js','plugin/form-validation/jquery.validate.min.js','plugin/form-validation/extjquery.validate.min.js','plugin/bootbox/bootbox.js'];
+        $data['scripts'] = ['js/provider/general.js','js/provider/lapang.js','plugin/form-validation/jquery.validate.min.js','plugin/form-validation/extjquery.validate.min.js','plugin/bootbox/bootbox.js','js/bootstrap-datepicker.min.js'];
         $this->load->view('admin_provider/tamplate_provider',$data);
     }
     public function transaksi(){
@@ -75,7 +75,7 @@ class Home extends CI_Controller {
         $data['transaksi'] = $query = $this->provider_model->get_provider_trans(array("provider.id_provider"=>$data['provider']['id_provider']))->result_array();
         $data['sidebar']='admin_provider/sidebar_provider';
         $data['title']='Transaksi';
-        $data['scripts'] = ['js/provider/general.js','plugin/form-validation/jquery.validate.min.js','plugin/form-validation/extjquery.validate.min.js','plugin/bootbox/bootbox.js'];
+        $data['scripts'] = ['js/provider/general.js','plugin/form-validation/jquery.validate.min.js','plugin/form-validation/extjquery.validate.min.js','plugin/bootbox/bootbox.js','js/bootstrap-datepicker.min.js'];
         $this->load->view('admin_provider/tamplate_provider',$data);
     }
 	function check_role(){

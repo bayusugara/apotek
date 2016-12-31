@@ -104,6 +104,8 @@
     <!-- Custom Theme JavaScript -->
     <script src="<?=base_url();?>assets/js/sb-admin-2.min.js"></script>
     <script src="<?=base_url();?>assets/js/moment.js"></script>
+    <script src="<?=base_url();?>assets/js/moment.js"></script>
+    <script src="<?=base_url();?>assets/plugin/highcharts/highcharts.js"></script>
     <?php  
     for($i=0;$i<count($scripts);$i++):
     ?>
