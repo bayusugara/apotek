@@ -341,6 +341,45 @@ class Welcome extends CI_Controller {
         echo $total; 
         // print_r($query);
     }
+    function viewtransaksi(){
+    	$user = $this->login_model->get();
+		$data['userdata'] = $user;
+		$data['navbar']='navbar';
+		$data['content']= 'viewtransaksi';
+		$data['provinsi'] = $this->provider_model->get_provinsi()->result_array();
+
+		$data['slide']= null;
+		$data['sidebar']= 'sidebar';
+		$data['customer'] = $this->customer_model->get(array('id' => $user['id']))->row_array();
+		$data['transaksi'] = $query = $this->transaksi_model->get_trans(array("customer.id_customer"=>$data['customer']['id_customer']))->result_array();
+		$data['transaksiconf'] = $query = $this->transaksi_model->get_transconf(array("customer.id_customer"=>$data['customer']['id_customer']))->result_array();
+		$this->load->view('tamplate',$data);	
+    }
+    function get_buktiTrans(){
+        // $this->layout = false;
+        $id = $_POST['idx'];
+        $query = $this->transaksi_model->get_transconf(array("transaksi.kode_transaksi"=>$id))->result_array();
+        $result = "";
+        foreach($query as $row){
+            // $result = $row['TrcTypeID']+
+        }
+        // print_r($query);
+        echo json_encode($query);
+    }
+    function uploadBuktiTrans(){
+    	$user = $this->login_model->get();
+    	$attachment_file=$_FILES["image"];
+		$output_dir = "assets/img/buktiTrans/";
+		$fileName = $_POST['kode_transaksi'];
+		move_uploaded_file($_FILES["image"]["tmp_name"],$output_dir.$fileName.'.png');
+		$data['bukti_trans'] = $fileName.'.png';
+			if ($this->transaksi_model->edit($_POST['kode_transaksi'],$data)) {
+				echo "1";
+			}else{
+				echo "0";
+			}
+
+    }
     // function get_jadwal_lapangan(){
     //     $id = $this->input->post('idx');
     //     $tgl_sewa = $this->input->post('tgl_sewa');

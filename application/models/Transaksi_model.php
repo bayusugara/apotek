@@ -40,4 +40,30 @@ class Transaksi_model extends CI_Model {
 		$this->db->where('id_transaksi', $id_transaksi);
 		return $this->db->delete('transaksi');
 	}
+	function get_trans($where = NULL){
+		$this->db->select('transaksi.*,lapang.kode_lapang as kode_lapang,provider.nama as nama_provider');
+		$this->db->from('customer');
+		$this->db->from('transaksi');
+		$this->db->join('lapang','transaksi.id_lapang = lapang.id_lapang');
+		$this->db->join('provider','lapang.id_provider = provider.id_provider');
+		if($where != NULL){
+			$this->db->where($where);
+			$this->db->where('transaksi.tgl_transaksi IS NOT NULL');
+		}
+		$this->db->order_by('kode_transaksi','ASC');
+		return $this->db->get();
+	}
+	function get_transconf($where = NULL){
+		$this->db->select('transaksi.*,lapang.kode_lapang as kode_lapang,provider.nama as nama_provider');
+		$this->db->from('customer');
+		$this->db->from('transaksi');
+		$this->db->join('lapang','transaksi.id_lapang = lapang.id_lapang');
+		$this->db->join('provider','lapang.id_provider = provider.id_provider');
+		if($where != NULL){
+			$this->db->where($where);
+			$this->db->where('transaksi.tgl_transaksi IS NULL');
+		}
+		$this->db->order_by('kode_transaksi','ASC');
+		return $this->db->get();
+	}
 }
