@@ -40,10 +40,13 @@
                             // print_r($userdata);
                             if(!isset($userdata)){
                         ?>                   
-                            <div class="account"><a href="login.html"><span> </span>YOUR ACCOUNT</a></div>
+                            <div class="account"><a href="<?=base_url();?>login"><span> </span>YOUR ACCOUNT</a></div>
+                            <div class="cart"><a href="<?=base_url();?>login"><span> </span>TRANSAKSI</a></div> 
                         <?php
                             }else{
-                            echo'<div class="account"><a href="'.base_url().'welcome/profil_customer/'.$userdata['id'].'"><span> </span>YOUR ACCOUNT ('.$userdata['username'].') </a></div>';
+                            echo'<div class="account"><a href="'.base_url().'welcome/profil_customer/'.$userdata['id'].'"><span> </span>YOUR ACCOUNT ('.$userdata['username'].') </a></div>
+                                <div class="cart"><a href="'.base_url().'welcome/viewtransaksi/'.$userdata['id'].'"><span> </span>TRANSAKSI</a></div>
+                                ';
                             }
                         ?>
                             <ul class="login">
@@ -58,7 +61,8 @@
                             	}
                             	?>
                             </ul>
-                    <div class="clearfix"> </div>
+                                               
+                            <div class="clearfix"> </div>
                 </div>
                 <div class="clearfix"> </div>   
             </div>

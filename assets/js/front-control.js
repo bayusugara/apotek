@@ -131,13 +131,24 @@ function prevCalendar(el){
 		}
 	});
 }
-function openModalTransaksi(el){
+
+function openBukti(el){
 	var id = $(el).attr('data-id');
-	$('[name="id_lapang"]').val(id);
+	$('[name="kode_transaksi"]').val(id);
 }
 $('.save-btn').on('click', function(){
 	alert();
 });
+
+function openModalTransaksi(el){
+var id = $(el).attr('data-id');
+	$('[name="id_lapang"]').val(id);
+}
+
+$('.save-btn').on('click', function(){
+	alert();
+});
+
 function saveTransaksi(){
 		// alert();
 	    var data = $('#myForm').serialize();
@@ -160,6 +171,26 @@ function saveTransaksi(){
 	    });
 	    // console.log(base_url);
 }
+function uploadBukti(){
+		// alert();
+	    var data = $('#myForm-bukti').serialize();
+	    // $.post('url', data);
+	    var api = "welcome/uploadBuktiTrans";
+	    
+	    $.post(api, data).done(function( data ) {
+	      if (data != "0"){
+	        bootbox.alert("Bukti Pembayaran Berhasil di Upload", function(){
+	          location.reload();
+	        })
+
+	      }else{
+	        bootbox.alert("Gagal Mengupload");
+	      }   
+	    });
+	    // console.log(base_url);
+}
+
+
 function checkJadwal(){
 	var tanggal = $('[name="tanggal"]').val();
 	var jam_mulai = $('[name="jam_mulai"]').val();
