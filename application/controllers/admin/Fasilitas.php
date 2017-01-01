@@ -41,7 +41,7 @@ class Fasilitas extends CI_Controller {
 		//init data
 		$data['fasilitas'] = $this->fasilitas_model->get()->result_array();
 
-		$data['scripts'] = ['js/admin/fasilitas.js','plugin/form-validation/jquery.validate.min.js','plugin/bootbox/bootbox.js'];
+		$data['scripts'] = ['js/admin/fasilitas.js','plugin/form-validation/jquery.validate.min.js','plugin/bootbox/bootbox.js','js/bootstrap-datepicker.min.js'];
 		$this->load->view('admin/tamplate_admin',$data);
 	}
 	function check_role(){

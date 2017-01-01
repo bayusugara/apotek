@@ -289,10 +289,10 @@ function updateStatus(el){
 			// if($(el).html())
 			bootbox.alert('Status gagal di update');
 		}else{
-			if($(el).html() == 'Served'){
-				$(el).html("Pending");
-			}else{
-				$(el).html("Served");
+			if($(el).html() == 'Waiting Transfer'){
+				$(el).html("Waiting Approval");
+			}else if($(el).html() == "Waiting Approval"){
+				$(el).html("Booking Complete");
 			}
 			bootbox.alert('Status berhasil di update');
 		}

@@ -54,11 +54,13 @@
                   ?>
                   <tr idx="<?=$value['kode_transaksi'];?>"><td><?=$value['kode_transaksi'];?></td><td><?=$value['tgl_sewa'];?></td><td><?=$value['tgl_main'];?></td><td><?=$value['jam_mulai'];?></td><td><?=$value['jam_selsai'];?></td><td><?=$value['total_bayar'];?></td><td><?=$value['nama'];?></td><td><?=$value['kode_lapang'];?></td><td><?php
                   if($value['status']==0){
-                    $status='Pending';
+                    $status='Waiting Transfer';
+                  }else if($value['status']==1){
+                    $status="Waiting Approval";
                   }else{
-                    $status="Served";
+                    $status = "Booking Complete";
                   }
-                  echo"<button class='btn btn-default status' onclick='updateStatus(this);'>".$status."</button>";
+                  echo"<button class='btn btn-default status' disabled onclick='updateStatus(this);'>".$status."</button>";
                   // $value['status'];
                   ?></td></tr>
                   <?php
