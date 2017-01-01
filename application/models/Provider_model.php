@@ -112,7 +112,7 @@ class Provider_model extends CI_Model {
 		return $id_provider;
 	}
 	function get_provider_trans($where){
-		$this->db->select('transaksi.*,lapang.kode_lapang as kode_lapang,customer.nama as nama, provider.nama as provider');
+		$this->db->select('transaksi.*,lapang.kode_lapang as kode_lapang,customer.nama as nama, provider.nama as provider, provider.id_provider as id_provider');
 		$this->db->from('transaksi');
 		$this->db->join('customer','customer.id_customer = transaksi.id_customer');
 		$this->db->join('lapang','transaksi.id_lapang = lapang.id_lapang');

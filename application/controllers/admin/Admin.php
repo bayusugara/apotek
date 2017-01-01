@@ -67,6 +67,7 @@ class Admin extends CI_Controller {
         array_push($result,$series1);
         print json_encode($result, JSON_NUMERIC_CHECK);
     }
+    
 	function check_role(){
 		$user = $this->login_model->get();
 		if(isset($user)){

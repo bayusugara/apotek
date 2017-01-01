@@ -84,6 +84,36 @@ class Welcome extends CI_Controller {
 
 		echo json_encode($jadwal);
 	}
+	function get_next_lapangan(){
+		$id = $this->input->post('idx');
+		$tgl_sewa = $this->input->post('tgl_sewa');
+		
+		if($tgl_sewa == 0){
+			$tgl_sewa = date('Y-m-d');
+			$tgl_sewa = date('Y-m-d',strtotime( "next week",strtotime($tgl_sewa)));
+		}
+			$sunday = date('Y-m-d',strtotime( "next sunday",strtotime($tgl_sewa)));
+
+			$monday = date('Y-m-d',strtotime( "previous monday",strtotime($tgl_sewa)));
+
+		$jadwal = $this->transaksi_model->get(array('id_lapang'=>$id,'tgl_main >='=>$monday,'tgl_main <='=>$sunday))->result_array();
+		echo json_encode($jadwal);
+	}
+	function get_prev_lapangan(){
+		$id = $this->input->post('idx');
+		$tgl_sewa = $this->input->post('tgl_sewa');
+		
+		if($tgl_sewa == 0){
+			$tgl_sewa = date('Y-m-d');
+			$tgl_sewa = date('Y-m-d',strtotime( "previous week",strtotime($tgl_sewa)));
+		}
+			$sunday = date('Y-m-d',strtotime( "next sunday",strtotime($tgl_sewa)));
+
+			$monday = date('Y-m-d',strtotime( "previous monday",strtotime($tgl_sewa)));
+
+		$jadwal = $this->transaksi_model->get(array('id_lapang'=>$id,'tgl_main >='=>$monday,'tgl_main <='=>$sunday))->result_array();
+		echo json_encode($jadwal);
+	}
 	PUBLIC function view_all(){
 		$user = $this->login_model->get();
 		$data['userdata'] = $user;
@@ -311,6 +341,25 @@ class Welcome extends CI_Controller {
     	if($this->transaksi_model->add($data)){
     		$enc['lapang'] = $this->provider_model->get_lapang(array('id_lapang'=>$_POST['id_lapang']))->row_array();
     		$enc['provider'] = $this->provider_model->get(array('id_provider'=>$enc['lapang']['id_provider']))->row_array();
+    		$nominal = (abs($_POST['jam_selesai'] - $_POST['jam_mulai']))*$enc['lapang']['harga']/2;
+    		$to = $user['email'];
+    		$from = 'kfebrianto0@gmail.com';
+            $subject = 'Efutsal transaksi status [Waiting Transfer]';
+            $message = '
+            <html>
+            <head>
+                <title>Transaksi saat ini Waiting Transfer.</title>
+            </head>
+            <body>
+            <h3>Code Transaki : '.$data['kode_transaksi'].'</h3>
+            <p>Status : <b>Waiting Transfer</b>.</p><br>
+            <p>Saat ini anda sudah dalam proses "Waiting Transfer" untuk melanjutkan ke proses selanjutnya silahkan kirim sejumlah Rp. '.$nominal.' ke rekening '.$enc['provider']['no_rek'].' atas nama '.$enc['provider']['nama'].' dalam waktu 10 jam. Setelah anda melakukan transfer silahkan konfirmasi pembayaran di menu transaksi terima kasih.</p><br><br>
+            <p>Best regard, efutsal team.</p>
+            <p>Krisna Febrianto</p>
+            </body>
+            </html>';
+    		$this->transaksi_model->send_mail($message,$subject,$to,$from);
+
     		echo json_encode($enc);
     	}else{
     		echo "0";

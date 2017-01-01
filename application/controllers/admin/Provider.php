@@ -21,7 +21,7 @@ class Provider extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model(array('provider_model','fasilitas_model','login_model','user_model','gallery_model','transaksi_model'));
+		$this->load->model(array('provider_model','fasilitas_model','login_model','user_model','gallery_model','transaksi_model','customer_model'));
 	}
 	public function index(){
 		//ngambil data user dari database
@@ -315,13 +315,55 @@ class Provider extends CI_Controller {
     function updateStatus(){
         $id = $_POST['idx'];
         $transaksi = $this->transaksi_model->get(array('kode_transaksi' =>$id  ))->row_array();
+        $user = $this->customer_model->get(array('id_customer' => $transaksi['id_customer']))->row_array();
+        $trans = $this->provider_model->get_provider_trans(array('kode_transaksi'=>$id))->row_array();
+        $provider = $this->provider_model->get(array('id_provider'=>$trans['id_provider']))->row_array();
+        $from = 'kfebrianto0@gmail.com';
+
         if($transaksi['status'] == 0){
             $data['status'] = 1;
+            $to = $user['email'];
+            $subject = 'Efutsal transaksi status [Waiting Approval]';
+            $message = '
+            <html>
+            <head>
+                <title>Selamat status transaksi anda telah berhasil diupdate.</title>
+            </head>
+            <body>
+            <h3>Code Transaki : '.$transaksi['kode_transaksi'].'</h3>
+            <p>Status transaksi saat ini adalah "Waiting Approval". Tunggu email kami selanjutnya.</p><br><br>
+            <p>Best regard, efutsal team</p>
+            <p>Krisna Febrianto</p>
+            </body>
+            </html>
+        ';
         }else if($data['status'] = 1){
             $data['status'] = 2;
+            $to = $user['email'];
+            $subject = 'Efutsal transaksi status [Booking Completed]';
+            $message = '
+            <html>
+            <head>
+                <title>Selamat Booking Complete</title>
+            </head>
+            <body>
+            <h3>Code Transaki : '.$transaksi['kode_transaksi'].'</h3>
+            <p>Status : <b>Booking Completed</b>.</p><br>
+            <p>Silahkan tunjukan email ini ke pihak penyedia lapang, sebagai bukti pembayaran yang sah.</p><br><br>
+            <p>Best regard, efutsal team</p>
+            <p>Krisna Febrianto</p>
+            </body>
+            </html>';
         }
         if($this->transaksi_model->update($id,$data)){
-            echo "1";
+            if ($this->transaksi_model->send_mail($message,$subject,$to,$from)) {
+                # code...
+                echo"1";
+            } else {
+                # code...
+                echo"0";
+            }
+            
         }else{
             echo "0";
         }
