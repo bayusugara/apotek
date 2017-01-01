@@ -2,7 +2,9 @@
 	<script src="<?=base_url();?>assets/js/jquery.etalage.min.js"></script>
 	<script src="<?=base_url();?>assets/js/front-control.js"></script>
 	<script src="<?=base_url();?>assets/js/bootstrap.min.js"></script>
-	 	
+	<script type="text/javascript">
+		var base_url = '<?=base_url();?>';
+	</script>
 	     
 
           	    	<div class="toogle">
@@ -89,7 +91,7 @@
 	        <div class="form-group required">
 	          <div class="col-sm-12">
                   <input type="file" class="form-control" required="" name="image">
-                  <input type="text" class="form-control" required name="kode_transaksi" disabled="">
+                  <input type="hidden" class="form-control" required name="kode_transaksi" >
                 </div>
 	        </div>
 		<!-- </div> -->

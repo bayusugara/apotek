@@ -142,7 +142,7 @@ $('.save-btn').on('click', function(){
 
 function openModalTransaksi(el){
 var id = $(el).attr('data-id');
-	$('[name="id_lapang"]').val(id);
+	$('[name="id_lapang"]').val(id).trigger('change');
 }
 
 $('.save-btn').on('click', function(){
@@ -173,20 +173,42 @@ function saveTransaksi(){
 }
 function uploadBukti(){
 		// alert();
-	    var data = $('#myForm-bukti').serialize();
+	    // var data = $('#myForm-bukti').serialize();
+	    var data = new FormData($('#myForm-bukti')[0]);
 	    // $.post('url', data);
+	    console.log(data);
 	    var api = "welcome/uploadBuktiTrans";
 	    
-	    $.post(api, data).done(function( data ) {
-	      if (data != "0"){
-	        bootbox.alert("Bukti Pembayaran Berhasil di Upload", function(){
-	          location.reload();
-	        })
+	    // $.post(api, data).done(function( data ) {
+	    //   if (data != "0"){
+	    //     bootbox.alert("Bukti Pembayaran Berhasil di Upload", function(){
+	    //       location.reload();
+	    //     })
 
-	      }else{
-	        bootbox.alert("Gagal Mengupload");
-	      }   
-	    });
+	    //   }else{
+	    //     bootbox.alert("Gagal Mengupload");
+	    //   }   
+	    // });
+	    $.ajax({
+               type:"POST",
+               url:base_url+api,
+               data:data,
+               mimeType: "multipart/form-data",
+                contentType: false,
+                cache: false,
+                processData: false,
+               success:function(data)
+              {
+                if (data == "1"){
+				bootbox.alert("Bukti Pembayaran Berhasil di Upload.", function(){
+				location.reload();
+					})
+				}else{
+					bootbox.alert("Bukti Pembayaran gagal di Upload.");
+				}		
+ 
+               }
+	       });
 	    // console.log(base_url);
 }
 

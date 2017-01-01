@@ -21,7 +21,6 @@
 			});
 	</script>
 </head>
-<body> 
 	 	<div class=" single_top pull-left" style="width:100%;" >
 			<div class="single_grid">												
 				<div class="grid images_3_of_2">
@@ -134,7 +133,7 @@
         <br>
         <center><button class="btn btn-lg btn-primary btn-booking"  data-toggle="modal" data-target="#myModalBooking" onclick="openModalTransaksi(this);">Booking Here !</button></center>
     	<?php }?>
-    	<button class="btn pull-left btn-default btn-prev" onclick="prevCalendar(this);" data-jam-buka="<?=$provider['jam_buka'];?>" data-jam-tutup="<?=$provider['jam_tutup'];?>"><</button>
+    	<button class="btn pull-left btn-default btn-prev" onclick="nextCalendar(this);" data-jam-buka="<?=$provider['jam_buka'];?>" data-jam-tutup="<?=$provider['jam_tutup'];?>"><</button>
     	<button class="btn pull-right btn-default btn-next" onclick="nextCalendar(this);" data-jam-buka="<?=$provider['jam_buka'];?>" data-jam-tutup="<?=$provider['jam_tutup'];?>">></button>
     	
       </div>
@@ -195,6 +194,4 @@
 
     </div>
   </div>
-</div>
-</body>	
-					 	
+</div>			 	

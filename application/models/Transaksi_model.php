@@ -68,7 +68,7 @@ class Transaksi_model extends CI_Model {
 		return $this->db->delete('transaksi');
 	}
 	function get_trans($where = NULL){
-		$this->db->select('transaksi.*,lapang.kode_lapang as kode_lapang,provider.nama as nama_provider');
+		$this->db->select('transaksi.*,lapang.kode_lapang as kode_lapang,provider.nama as nama_provider, provider.user_login_id as user_id');
 		$this->db->from('customer');
 		$this->db->from('transaksi');
 		$this->db->join('lapang','transaksi.id_lapang = lapang.id_lapang');
@@ -81,7 +81,7 @@ class Transaksi_model extends CI_Model {
 		return $this->db->get();
 	}
 	function get_transconf($where = NULL){
-		$this->db->select('transaksi.*,lapang.kode_lapang as kode_lapang,provider.nama as nama_provider');
+		$this->db->select('transaksi.*,lapang.kode_lapang as kode_lapang,provider.nama as nama_provider, provider.user_login_id as user_id');
 		$this->db->from('customer');
 		$this->db->from('transaksi');
 		$this->db->join('lapang','transaksi.id_lapang = lapang.id_lapang');

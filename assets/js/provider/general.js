@@ -294,8 +294,14 @@ function updateStatus(el){
 			}else if($(el).html() == "Waiting Approval"){
 				$(el).html("Booking Complete");
 			}
-			bootbox.alert('Status berhasil di update');
+			bootbox.alert("Status berhasil diubah.", function(){
+	          location.reload();
+	        })
 		}
 	})
 	console.log($(el).html());
+}
+function loadImg(img){
+	$('.img-container').empty();
+	$('.img-container').append('<center><img src="'+img+'" class="img-responsive" width="600px"></center>');
 }

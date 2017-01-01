@@ -317,9 +317,10 @@ class Provider extends CI_Controller {
         $transaksi = $this->transaksi_model->get(array('kode_transaksi' =>$id  ))->row_array();
         $user = $this->customer_model->get(array('id_customer' => $transaksi['id_customer']))->row_array();
         $trans = $this->provider_model->get_provider_trans(array('kode_transaksi'=>$id))->row_array();
+        $lapang = $this->provider_model->get_lapang(array('id_lapang'=>$transaksi['id_lapang']))->row_array();
         $provider = $this->provider_model->get(array('id_provider'=>$trans['id_provider']))->row_array();
         $from = 'kfebrianto0@gmail.com';
-
+        $data['total_bayar'] = (abs($transaksi['jam_selsai'] - $transaksi['jam_mulai']))*$lapang['harga']/2; 
         if($transaksi['status'] == 0){
             $data['status'] = 1;
             $to = $user['email'];
@@ -356,13 +357,14 @@ class Provider extends CI_Controller {
             </html>';
         }
         if($this->transaksi_model->update($id,$data)){
-            if ($this->transaksi_model->send_mail($message,$subject,$to,$from)) {
+            // echo $this->transaksi_model->send_mail($message,$subject,$to,$from);
+            $this->transaksi_model->send_mail($message,$subject,$to,$from);
                 # code...
                 echo"1";
-            } else {
-                # code...
-                echo"0";
-            }
+            // } else {
+            //     # code...
+            //     echo"0";
+            // }
             
         }else{
             echo "0";

@@ -418,16 +418,42 @@ class Welcome extends CI_Controller {
     function uploadBuktiTrans(){
     	$user = $this->login_model->get();
     	$attachment_file=$_FILES["image"];
-		$output_dir = "assets/img/buktiTrans/";
+		$output_dir = "assets/img/bukti_trans/";
 		$fileName = $_POST['kode_transaksi'];
 		move_uploaded_file($_FILES["image"]["tmp_name"],$output_dir.$fileName.'.png');
 		$data['bukti_trans'] = $fileName.'.png';
+		$data['status'] = 1;
+		$trans= $this->transaksi_model->get_transconf(array('kode_transaksi'=>$_POST['kode_transaksi']))->row_array();
+		// $total = (abs($trans['jam_selesai'] - $trans['jam_mulai']))*$lapang['harga']/2;
+		$provider = $this->provider_model->get(array('user_login_id'=>$trans['user_id']))->row_array();
+		$data['tgl_transaksi'] = date('Y-m-d');
+		// print_r($provider['email']);
+		// // die();
+		// echo "21";
 			if ($this->transaksi_model->edit($_POST['kode_transaksi'],$data)) {
+				// echo $provider['email'];
 				echo "1";
+				$from = 'kfebrianto0@gmail.com';
+				$to = $provider['email'];
+	            $subject = 'Efutsal transaksi status [Waiting Approval]';
+	            $message = '
+	            <html>
+	            <head>
+	                <title>Bukti Pembayaran Telah di kirimkan.</title>
+	            </head>
+	            <body>
+	            <h3>Code Transaki : '.$_POST['kode_transaksi'].'</h3>
+	            <p>Kepada penyedia lapang yang terhormat. Status transaksi saat ini adalah "Waiting Approval". Silahkan approve atau update status transaksi jika bukti pembayaran valid.</p><br><br>
+	            <p>Best regard, efutsal team</p>
+	            <p>Krisna Febrianto</p>
+	            </body>
+	            </html>
+	        ';
+	        $this->transaksi_model->send_mail($message,$subject,$to,$from);
 			}else{
 				echo "0";
 			}
-
+		// die;
     }
     // function get_jadwal_lapangan(){
     //     $id = $this->input->post('idx');
