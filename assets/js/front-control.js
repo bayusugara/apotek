@@ -24,7 +24,7 @@ function openCalendar(el){
 		if(json.length != 0 ){
 			for (var i = 0; i < json.length; i++) {
 				console.log(json[i]);
-				for (var k = parseInt(json[i].jam_mulai); k <= parseInt(json[i].jam_selsai); k++) {
+				for (var k = parseInt(json[i].jam_mulai); k <= parseInt(json[i].jam_selsai)-1; k++) {
 					console.log(k);
 					var a =$("tr[data-jam='" + k +"']");
 					// $(a).append('<td>asd</td>');
@@ -67,7 +67,7 @@ function nextCalendar(el){
 		if(json.length != 0 ){
 			for (var i = 0; i < json.length; i++) {
 				console.log(json[i]);
-				for (var k = parseInt(json[i].jam_mulai); k <= parseInt(json[i].jam_selsai); k++) {
+				for (var k = parseInt(json[i].jam_mulai); k <= parseInt(json[i].jam_selsai)-1; k++) {
 					console.log(k);
 					var a =$("tr[data-jam='" + k +"']");
 					// $(a).append('<td>asd</td>');
@@ -110,7 +110,7 @@ function prevCalendar(el){
 		if(json.length != 0 ){
 			for (var i = 0; i < json.length; i++) {
 				console.log(json[i]);
-				for (var k = parseInt(json[i].jam_mulai); k <= parseInt(json[i].jam_selsai); k++) {
+				for (var k = parseInt(json[i].jam_mulai); k <= parseInt(json[i].jam_selsai)-1; k++) {
 					console.log(k);
 					var a =$("tr[data-jam='" + k +"']");
 					// $(a).append('<td>asd</td>');
