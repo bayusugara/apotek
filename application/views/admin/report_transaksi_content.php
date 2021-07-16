@@ -20,7 +20,7 @@
                 <input type="text" id="max" mindate="min" class="datepicker form-control">
               </div>
             </div>
-            <div class="col-md-6">
+            <!-- <div class="col-md-6">
               <div class="form-group">
                 <label>Filter Date</label>
                 <select name="date" class="form-control">
@@ -28,7 +28,7 @@
                   <option value="2">Tanggal Main</option>
                 </select>
               </div>
-            </div>
+            </div> -->
           <!-- </div> -->
         </div>
         <div class="row">
@@ -37,15 +37,11 @@
             <thead>
                 <tr>
                     <th>Kode Transaksi</th>
-                    <th>Tanggal Sewa</th>
-                    <th>Tanggal Main</th>
-                    <th>Jam Mulai</th>
-                    <th>Jam Selesai</th>
-                    <th>Total Bayar</th>
-                    <th>Penyedia</th>
-                    <th>Penyewa</th>
-                    <th>Lapang</th>
-                    <th>Status</th>
+                    <th>Pegawai</th>
+                    <th>Tanggal</th>
+                    <th>Jumlah</th>
+                    <th>Obat</th>
+                    <th>Total bayar</th>
                 </tr>
             </thead>
             <tbody>
@@ -53,17 +49,7 @@
                   foreach ($transaksi as $key => $value) {
                     # code...
                   ?>
-                  <tr idx="<?=$value['kode_transaksi'];?>"><td><?=$value['kode_transaksi'];?></td><td><?=$value['tgl_sewa'];?></td><td><?=$value['tgl_main'];?></td><td><?=$value['jam_mulai'];?></td><td><?=$value['jam_selsai'];?></td><td><?=$value['total_bayar'];?></td><td><?=$value['provider'];?></td><td><?=$value['nama'];?></td><td><?=$value['kode_lapang'];?></td><td><?php
-                  if($value['status']==0){
-                    $status='Waiting Transfer';
-                  }else if($value['status']==1){
-                    $status="Waiting Approval";
-                  }else{
-                    $status = "Booking Complete";
-                  }
-                  echo"<button class='btn btn-default status' disabled onclick='updateStatus(this);'>".$status."</button>";
-                  // $value['status'];
-                  ?></td></tr>
+                  <tr idx="<?=$value['id'];?>"><td><?=$value['id'];?></td><td><?=$value['pegawai'];?></td><td><?=$value['tgl_transaksi'];?></td><td><?=$value['jml_obat'];?></td><td><?=$value['detail_obat'];?></td><td><?=$value['jumlah'];?></td></tr>
                   <?php
                   }
                 ?>

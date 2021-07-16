@@ -12,7 +12,7 @@
                     <th>#</th>
                     <th>Nama</th>
                     <th>Alamat</th>
-                    <th>Email</th>
+                    <th>Telepon</th>
                     <th>Status</th>
                     <th></th>
                 </tr>
@@ -21,11 +21,11 @@
                 <?php
                     foreach ($customer as $key => $value) {
                 ?>
-                    <tr idx="<?=$value['id_customer'];?>" id="<?=$value['id'];?>">
+                    <tr idx="<?=$value['id_customer'];?>">
                         <td><?=$key+1;?></td>
                         <td><?=$value['nama'];?></td>
                         <td><?=$value['alamat'];?></td>
-                        <td><?=$value['email'];?></td>
+                        <td><?=$value['no_tlp'];?></td>
                         <td><?php 
                             if($value['status']==0){
                               echo"<div class='label label-danger'>Non active</div>";  
@@ -37,7 +37,7 @@
                         </td>
                         <td> 
                             <a data-target="#modal-admin" data-backdrop="static" data-toggle="modal" class="update btn btn-sm btn-white text-black"><i class="fa fa-pencil-square-o fa-lg"></i></a>  
-                            <a data-target="#modal-change-password" data-backdrop="static" data-toggle="modal" class="change-pass btn btn-sm btn-white text-black"><i class="fa fa-key fa-lg"></i></a>      
+                            <!-- <a data-target="#modal-change-password" data-backdrop="static" data-toggle="modal" class="change-pass btn btn-sm btn-white text-black"><i class="fa fa-key fa-lg"></i></a>       -->
                             <a class="delete btn btn-sm btn-white text-red" href="javascript:;"><i class="fa fa-trash-o fa-lg"></i></a>
                         </td>
                     </tr>
@@ -78,19 +78,34 @@
                     <textarea name="alamat" class="form-control"></textarea>
                   </div>
                 </div>
-                <div class="form-group required">
+                <!-- <div class="form-group required">
                   <label class="col-sm-3 control-label">Email</label>
                   <div class="col-sm-8">
                   <input type="email" class="form-control" maxlength="50" required name="email" placeholder="Email">
                   </div>
-                </div>
+                </div> -->
                 <div class="form-group required">
                   <label class="col-sm-3 control-label">Nomor Telephone</label>
                   <div class="col-sm-8">
                   <input type="text" class="form-control" maxlength="50" required name="no_telp" placeholder="Nomor Telephone">
                   </div>
                 </div>
-                 <div class="form-group required">
+                <div class="form-group required">
+                  <label class="col-sm-3 control-label">Tanggal Lahir</label>
+                  <div class="col-sm-8">
+                  <input type="text" class="form-control" maxlength="50" required name="tgl_lahir" placeholder="Tanggal Lahir (yyyy-mm-dd)">
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <label class="col-sm-3 control-label">Jenis Kelamin</label>
+                  <div class="col-sm-8">
+                  <select name="jk" class="form-control" required="">
+                   <option value="l">Laki - laki</option>
+                   <option value="p">Perempuan</option>
+                  </select>
+                  </div>
+                </div>
+                 <!-- <div class="form-group required">
                   <label class="col-sm-3 control-label">Username</label>
                   <div class="col-sm-8">
                   <input type="text" class="form-control" maxlength="50" required name="username" placeholder="Username">
@@ -113,7 +128,7 @@
                   <div class="col-sm-8">
                   <input type="file" name="image" accept="image/.png">
                   </div>
-                </div>
+                </div> -->
                 <div class="form-group required">
                   <label class="col-sm-3 control-label">Status</label>
                   <div class="col-sm-8">

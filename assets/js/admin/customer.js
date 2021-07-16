@@ -170,7 +170,7 @@ jQuery.fn.getCheckboxVal = function(){
 	return vals;
 }
 $(document).on('click','.delete',function(){
-	var idx = $(this).closest('tr').attr('id');
+	var idx = $(this).closest('tr').attr('idx');
 	var tr = $(this).closest('tr');
 	
 	bootbox.confirm("Apakan anda yakin akan menghapus "+$(tr).find('td').eq(1).html()+"?", function(result){
@@ -212,6 +212,8 @@ $(document).on('click','.update',function(){
 		$('[name="nama"]').val(json.nama);
 		$('[name="email"]').val(json.email);
 		$('[name="no_telp"]').val(json.no_tlp);
+
+		$('[name="tgl_lahir"]').val(json.tgl_lahir);
 		$('[name="image_name"]').val(json.foto);
 		$('[name="alamat"]').val(json.alamat);
 		$('[name="password"]').val(json.password);

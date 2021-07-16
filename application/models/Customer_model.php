@@ -8,7 +8,7 @@ class Customer_model extends CI_Model {
 	function get($where = NULL){
 		$this->db->select('*');
 		$this->db->from('customer');
-        $this->db->join('user_login', 'customer.user_login_id = user_login.id');
+        // $this->db->join('user_login', 'customer.user_login_id = user_login.id');
 		if($where != NULL){
 			$this->db->where($where);
 		}
@@ -66,9 +66,9 @@ class Customer_model extends CI_Model {
 	}
 	
 	function delete($id_customer){
-		$this->db->where('user_login_id', $id_customer);
+		$this->db->where('id_customer', $id_customer);
 		$this->db->delete('customer');
 		$this->db->where('id', $id_customer);
-		return $this->db->delete('user_login');
+		return $this->db->delete('customer');
 	}
 }

@@ -10,10 +10,13 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Nama Penyedia</th>
-                    <th>Lokasi</th>
-                    <th>Email</th>
+                    <th>Nama</th>
+                    <th>Alamat</th>
+                    <th>Jabatan</th>
+                    <th>No Telp</th>
+                    <th>Tempat Lahir</th>
                     <th>Status</th>
+                    <!-- <th>Email</th> -->
                     <th></th>
                 </tr>
             </thead>
@@ -26,6 +29,8 @@
                         <td><?=$value['nama'];?></td>
                         <td><?=$value['lokasi'];?></td>
                         <td><?=$value['email'];?></td>
+                        <td><?=$value['email'];?></td>
+                        <td><?=$value['email'];?></td>
                         <td><?php 
                             if($value['status']==0){
                               echo"<div class='label label-danger'>Non active</div>";  
@@ -37,10 +42,10 @@
                         </td>
                         <td> 
                             <a data-target="#modal-admin" data-backdrop="static" data-toggle="modal" class="update btn btn-sm btn-white text-black"><i class="fa fa-pencil-square-o fa-lg"></i></a>  
-                            <a data-target="#modal-lapang" data-backdrop="static" data-toggle="modal" class="lapangan btn btn-sm btn-white text-black"><i class="fa fa-soccer-ball-o fa-lg"></i></a> 
+                            <!-- <a data-target="#modal-lapang" data-backdrop="static" data-toggle="modal" class="lapangan btn btn-sm btn-white text-black"><i class="fa fa-soccer-ball-o fa-lg"></i></a> 
                             <a data-target="#modal-gallery" data-backdrop="static" data-toggle="modal" class="gallery btn btn-sm btn-white text-black"><i class="fa fa-file-image-o fa-lg"></i></a>
                             <a data-target="#modal-change-password" data-backdrop="static" data-toggle="modal" class="change-pass btn btn-sm btn-white text-black"><i class="fa fa-key fa-lg"></i></a> 
-                            <a data-target="#modal-transaksi" data-backdrop="static" data-toggle="modal" class="show-trans btn btn-sm btn-white text-black"><i class="fa fa-calendar fa-lg"></i></a>       
+                            <a data-target="#modal-transaksi" data-backdrop="static" data-toggle="modal" class="show-trans btn btn-sm btn-white text-black"><i class="fa fa-calendar fa-lg"></i></a>        -->
                             <a class="delete btn btn-sm btn-white text-red" href="javascript:;"><i class="fa fa-trash-o fa-lg"></i></a>
                         </td>
                     </tr>

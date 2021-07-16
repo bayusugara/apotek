@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-<title>e-futsal | web booking lapang futsal terbaik & terlengkap seindonesia</title>
+<title>Login SI Apotek</title>
 <link href="<?=base_url();?>assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!--theme-style-->
 <link href="<?=base_url();?>assets/css/style.css" rel="stylesheet" type="text/css" media="all" />  
@@ -28,88 +28,33 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </head>
 <body> 
     <!--header-->
-    <div class="header">
-       <?php
-            if($navbar!=null){
-                $this->load->view($navbar,$userdata);
-            }
-       ?>
-    </div>
-    <!---->
-    <div class="container">
-            <div class="shoes-grid">
-            <a href="single.html">
-            <div class="wrap-in"> 
-                <?php
-                    if($slide!=null){
-                        $this->load->view($slide);
-                    }
-               ?>
-              </div>
-                </a>
-                  <!---->
-
-                <!-- <div class="wrap-in" style=""> -->
-                <?php
-                    if($content!=null){
-                        $this->load->view($content);
-                    }
-                ?>
-                <!-- </div> -->
-                
-
-               </div>   
-               <div class="sub-cate">
-                <?php
-                    if($sidebar!=null){
-                        $this->load->view($sidebar);
-                    }
-                ?>
-                <!--initiate accordion-->
-        <script type="text/javascript">
-            $('.datepicker').datepicker();
-            $(function() {
-                var menu_ul = $('.menu > li > ul'),
-                       menu_a  = $('.menu > li > a');
-                menu_ul.hide();
-                menu_a.click(function(e) {
-                    e.preventDefault();
-                    if(!$(this).hasClass('active')) {
-                        menu_a.removeClass('active');
-                        menu_ul.filter(':visible').slideUp('normal');
-                        $(this).addClass('active').next().stop(true,true).slideDown('normal');
-                    } else {
-                        $(this).removeClass('active');
-                        $(this).next().stop(true,true).slideUp('normal');
-                    }
-                });
-            
-            });
-        </script>  
+  <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <h1 >Sistem Informasi Apotek</h1>
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Please Sign In</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form" method="POST" action="<?=base_url();?>login/check">
+                            <fieldset>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                </div>
+                                
+                                <!-- Change this to a button or input when using this as a form -->
+                                <input type="submit" class="btn btn-lg btn-success btn-block" value="login">
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
             </div>
-                <div class="clearfix"> </div>                    
         </div>
-    
-    <!---->
-    <div class="footer">
-        <div class="footer-top">
-            <div class="container">
-                <div class="latter">
-                    <h6>E-FUTSAL</h6>
-                    <div class="clearfix"> </div>
-                </div>
-                <div class="latter-right">
-                    <p>FOLLOW US</p>
-                    <ul class="face-in-to">
-                        <li><a href="#"><span> </span></a></li>
-                        <li><a href="#"><span class="facebook-in"> </span></a></li>
-                        <div class="clearfix"> </div>
-                    </ul>
-                    <div class="clearfix"> </div>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-        </div>>
     </div>
+
 </body>
 </html>

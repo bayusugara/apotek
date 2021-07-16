@@ -131,28 +131,31 @@ function post_data(){
 		}else{
 			$('[name="status"]').val(0);
 		}
-		var arr = $("input[name='fasilitas']:checked").getCheckboxVal()
-		if(arr.length <= 0){
-			var arr = 0;
-		}
-		var data = [];
-		data.push($('[name="username"]').val());
-		data.push($('[name="password"]').val());
-		data.push($('[name="lokasi"]').val());
-		data.push($('[name="email"]').val());
-		data.push($('[name="nama_penyedia"]').val());
-		data.push($('[name="status"]').val());
-		data.push($('[name="id_provider"]').val());
-		data.push($('[name="user_login_id"]').val());
-		data.push($('[name="longitude"]').val());
-		data.push($('[name="latitude"]').val());
-		data.push($('[name="provinsi"]').val());
+		// var arr = $("input[name='fasilitas']:checked").getCheckboxVal()
+		// if(arr.length <= 0){
+		// 	var arr = 0;
+		// }
+		var data = $( "#myForm" ).serialize();
+		// data.push($('[name="username"]').val());
+		// data.push($('[name="password"]').val());
+		// data.push($('[name="lokasi"]').val());
+		// data.push($('[name="email"]').val());
+		// data.push($('[name="nama_penyedia"]').val());
+		// data.push($('[name="status"]').val());
+		// data.push($('[name="id_provider"]').val());
+		// data.push($('[name="user_login_id"]').val());
+		// data.push($('[name="longitude"]').val());
+		// data.push($('[name="latitude"]').val());
+		// data.push($('[name="provinsi"]').val());
+		// data.push(7);
+		// data.push(17);
+		// data.push('no rek');
 		// var data = $('#myForm').serialize();
 
 		// $.post('url', data);
-		var api = base_url+"admin/provider/post";
+		var api = base_url+"admin/pegawai/post";
 		
-		$.post(api, {arr:arr,data:data}).done(function( data ) {
+		$.post(api, data).done(function( data ) {
 			if (data == "1"){
 				bootbox.alert("Data berhasil disimpan.", function(){
 					location.reload();
@@ -175,9 +178,9 @@ $(document).on('click','.delete',function(){
 	var idx = $(this).closest('tr').attr('id');
 	var tr = $(this).closest('tr');
 	
-	bootbox.confirm("Apakan anda yakin akan menghapus penyedia "+$(tr).find('td').eq(1).html()+"?", function(result){
+	bootbox.confirm("Apakan anda yakin akan menghapus "+$(tr).find('td').eq(1).html()+"?", function(result){
 		if (result) {
-			$.post( base_url+"admin/provider/delete", {id : idx}).done(function( data ) {
+			$.post( base_url+"admin/pegawai/delete", {id : idx}).done(function( data ) {
 				if (data == '1'){
 					bootbox.alert("Data berhasil dihapus.", function(){
 						location.reload();
@@ -373,18 +376,18 @@ $(document).on('click','.update',function(){
 	$('#active').show();
 	$('.password').hide();
 	
-	$.post( base_url+"admin/provider/get_by_id", {idx: idx}).done(function( data1 ) {
+	$.post( base_url+"admin/pegawai/get_by_id", {idx: idx}).done(function( data1 ) {
 		var json = $.parseJSON(data1);
 		console.log(json)
-		$('[name="id_provider"]').val(json.id_provider);
+		$('[name="id_pegawai"]').val(json.id_pegawai);
 		$('[name="user_login_id"]').val(json.user_login_id);
 		$('[name="username"]').val(json.username);
-		$('[name="nama_penyedia"]').val(json.nama);
+		$('[name="nama"]').val(json.nama);
 		$('[name="email"]').val(json.email);
-		$('[name="lokasi"]').val(json.lokasi);
-		$('[name="latitude"]').val(json.latitude);
-		$('[name="longitude"]').val(json.longitude);
-		$('[name="provinsi"]').val(json.provinsi_id);
+		$('[name="alamat"]').val(json.alamat);
+		$('[name="telp"]').val(json.no_hp);
+		// $('[name="longitude"]').val(json.longitude);
+		$('[name="jabatan"]').val(json.jabatan);
 		$('[name="password"]').val(json.password);
 		$('[name="password_conf"]').val(json.password);
 		// $('[name="requester_institution"]').val(json.requester_institution);
@@ -395,20 +398,6 @@ $(document).on('click','.update',function(){
 			$('[name="status"]').attr('checked',false);
 			$('[name="status"]').val(0);
 		}
-		$.post( base_url+"admin/provider/get_fasilitas_by_id", {idx: idx}).done(function( data ) {
-			var json = $.parseJSON(data)
-			var values = [];
-
-			for (var i = 0; i < json.length; i++) {
-				// console.log(json[i].TrcTypeID);
-				values.push(String(json[i].id_fasilitas));
-				// $("#user-list [value=" + json[i].TrcTypeID + "]").attr("checked", "checked");
-			}
-			// console.log(values);
-			if(json.length > 0){
-				$(".fasilitas").find('[value=' + values.join('], [value=') + ']').prop("checked", true);
-			}
-		});	
 	});
 });
 function change_pass(){
@@ -416,7 +405,7 @@ function change_pass(){
 	  if(validator.form()){
 	    var data = $('#passwordForm').serialize();
 	    // $.post('url', data);
-	    var api = base_url+"admin/provider/change_pass";
+	    var api = base_url+"admin/pegawai/change_pass";
 	    
 	    $.post(api, data).done(function( data ) {
 	      if (data == "1"){

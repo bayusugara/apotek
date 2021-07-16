@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>e-futsal Admin</title>
+    <title>SI Apotek</title>
     <script type="text/javascript">
         var base_url = '<?php echo base_url(); ?>';
     </script>
@@ -17,6 +17,7 @@
     <link href="<?=base_url(); ?>assets/css/bootstrap.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
+    <link href="<?=base_url(); ?>assets/plugin/select2/css/select2.min.css" rel="stylesheet">
     <link href="<?=base_url(); ?>assets/plugin/metisMenu/metisMenu.min.css" rel="stylesheet">
     <link href="<?=base_url(); ?>assets/plugin/datatables-plugins/buttons.dataTables.min.css" rel="stylesheet">
     <!-- DataTables CSS -->
@@ -98,12 +99,12 @@
     <script src="<?=base_url();?>assets/plugin/datatables/js/jquery.dataTables.min.js"></script>
     <script src="<?=base_url();?>assets/plugin/datatables-plugins/dataTables.bootstrap.min.js"></script>
     <script src="<?=base_url();?>assets/plugin/datatables-responsive/dataTables.responsive.js"></script>
+    <script src="<?=base_url();?>assets/plugin/select2/js/select2.full.min.js"></script>
 
     <!-- <script src="<?=base_url();?>assets/plugin/jquery-validation/dataTables.bootstrap.min.js"></script> -->
     <script src="<?=base_url();?>assets/plugin/datatables-responsive/dataTables.responsive.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="<?=base_url();?>assets/js/sb-admin-2.min.js"></script>
-    <script src="<?=base_url();?>assets/js/moment.js"></script>
     <script src="<?=base_url();?>assets/js/moment.js"></script>
     <script src="<?=base_url();?>assets/plugin/highcharts/highcharts.js"></script>
     <?php  
@@ -115,6 +116,7 @@
     <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script> -->
     <script>
     $(document).ready(function() {
+        $(".select2").select2();
         $('.datepicker').datepicker();
         $('#dataTables-example').DataTable({
             responsive: true
@@ -153,8 +155,8 @@
                 // var give_results_daterange = grab_daterange.split(" to ");
                 var filterstart = $('#min').val();
                 var filterend = $('#max').val();
-                var iStartDateCol = $('[name="date"]').val(); //using column 2 in this instance
-                var iEndDateCol = $('[name="date"]').val();
+                var iStartDateCol = 2; //using column 2 in this instance
+                var iEndDateCol = 2;
                 var tabledatestart = aData[iStartDateCol];
                 var tabledateend= aData[iEndDateCol];
 

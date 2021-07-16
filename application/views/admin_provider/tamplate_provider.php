@@ -152,6 +152,7 @@
                   <input type="text" class="form-control" maxlength="50" name="latitude" placeholder="Latitude">
                   </div>
                 </div>
+               
                 <div class="form-group required">
                   <label class="col-sm-3 control-label">Provinsi</label>
                   <div class="col-sm-8">

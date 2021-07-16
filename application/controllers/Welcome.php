@@ -29,17 +29,18 @@ class Welcome extends CI_Controller {
 	}
 	public function index()
 	{
-		$user = $this->login_model->get();
-		$data['userdata'] = $user;
-		$data['navbar']='navbar';
-		$data['content']='content';
-		$data['slide']='slide';
-		$data['sidebar']='sidebar';
-		$data['provinsi'] = $this->provider_model->get_provinsi()->result_array();
-		$data['provider'] = $this->provider_model->get()->result_array();
-		$data['lapang'] = $this->provider_model->get()->result_array();
+		// $user = $this->login_model->get();
+		// $data['userdata'] = $user;
+		// $data['navbar']='navbar';
+		// $data['content']='content';
+		// $data['slide']='slide';
+		// $data['sidebar']='sidebar';
+		// $data['provinsi'] = $this->provider_model->get_provinsi()->result_array();
+		// $data['provider'] = $this->provider_model->get()->result_array();
+		// $data['lapang'] = $this->provider_model->get()->result_array();
 
-		$this->load->view('tamplate',$data);
+		// $this->load->view('tamplate',$data);
+		redirect('login');
 	}
 	PUBLIC function detail_provider($id_provider){
 		$user = $this->login_model->get();

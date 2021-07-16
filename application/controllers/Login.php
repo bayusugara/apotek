@@ -59,7 +59,7 @@ class Login extends CI_Controller {
 			}else if($user['role'] == 2){
 				redirect('admin_provider');
 			}else{
-				redirect('welcome');
+				redirect('login');
 			}
 		}
 		echo json_encode($response);
@@ -70,8 +70,10 @@ class Login extends CI_Controller {
 			if($user['role'] == 1){
 			// $this->session->set_flashdata('form_msg', array('success' =>true, 'fail'=> false, 'msg' => 'Login Success'));
 				redirect('admin');
+			}else if($user['role'] == 2){
+				redirect('admin_provider');
 			}else{
-				redirect('welcome');
+				redirect('login');
 			}
 		}	
 	}

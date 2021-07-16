@@ -6,7 +6,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">E-futsal Control Panel</a>
+                <a class="navbar-brand" href="index.html">Sistem Informasi Apotek</a>
             </div>
             <!-- /.navbar-header -->
 
